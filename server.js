@@ -38,9 +38,9 @@ const mainPage = require("./routes/main-page");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes());
-app.use("/api/widgets", widgetsRoutes());
-app.use("/api/main-page", mainPage());
+app.use("/users", usersRoutes());
+app.use("/widgets", widgetsRoutes());
+app.use("", mainPage());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
