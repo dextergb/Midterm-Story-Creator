@@ -8,5 +8,6 @@ CREATE TABLE users (
   full_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   nick_name VARCHAR(255) NOT NULL
+
 );
 
