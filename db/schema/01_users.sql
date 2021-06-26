@@ -17,7 +17,7 @@ CREATE TABLE stories (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   story_body TEXT,
   votes INTEGER NOT NULL DEFAULT 0,
-  completed BOOLEAN DEFAULT FALSE,
+  completed BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE contributed_stories (
