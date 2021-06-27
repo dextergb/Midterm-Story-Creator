@@ -22,15 +22,11 @@
     />
 
     <!-- App CSS -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
     <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
     <link
       rel="stylesheet"
@@ -42,8 +38,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script
       type="text/javascript"
@@ -51,6 +45,7 @@
     ></script>
     <script type="text/javascript" src="/scripts/back-to-top.js"></script>
     <script type="text/javascript" src="/scripts/compose.js"></script>
+    <script type="text/javascript" src="/scripts/nav.js"></script>
 
     <!-- Font Awesome -->
     <link
@@ -70,43 +65,160 @@
 
   <body>
     <!-- Top nav bar (fixed) -->
-    <nav>
-      <span class="title">Story Creator</span>
-      <div class="write-tweet">
-        <span class="compose"><b>Create</b> a new story</span>
-        <span>
-          <i class="fas fa-angle-double-down" id="arrow-down"></i>
-        </span>
-      </div>
-    </nav>
-    <header class="main-header">
-      <div class="profile-hex">
-        <img src="/images/profile-hex.png" />
-      </div>
-      <br />
-      <div class="name">
-        <span><b>Andrew, Sam, Dexter</b></span>
-      </div>
-    </header>
+    <%- include('partials/_nav') %>
+
+    <!-- Header (fixed)-->
+    <%- include('partials/_header') %>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <section class="new-tweet">
-        <section class="error-message"></section>
-        <!-- User input tweet form -->
-        <form class="tweet-form">
-          <textarea
-            name="text"
-            id="tweet-text"
-            placeholder="Let's make this is a better story!"
-          ></textarea>
-          <!-- Submit tweet -->
-          <button id="tweet-button" type="submit">Submit</button>
-          <!-- Count characters of tweet -->
-          <output name="counter" class="counter" for="tweet-text">140</output>
-        </form>
-        <!-- Render tweet -->
-        <section class="tweet-section"></section>
+      <!-- COMPLETED STORIES -->
+      <section class="completed">
+        <h1>Completed Stories</h1>
+        <article class="tweet-container">
+          <header>
+            <span id="tweet-name">username</span>
+            <span id="tweet-handle">user handle</span>
+          </header>
+          <p class="tweet-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
+            dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
+            porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
+            urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel
+            nisi et leo accumsan cursus. Proin gravida volutpat velit ac
+            commodo. Vivamus sed posuere nisi. Sed pellentesque hendrerit
+            mattis. Class aptent taciti sociosqu ad litora torquent per conubia
+            nostra, per inceptos himenaeos. Pellentesque ornare dictum dapibus.
+            Nullam accumsan varius turpis quis ultricies. Quisque sodales tortor
+            ac tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem
+            rhoncus, eleifend dui a, luctus felis. Class aptent taciti sociosqu
+            ad litora torquent per conubia nostra, per inceptos himenaeos.
+          </p>
+          <footer class="tweet-footer">
+            <span>${timeago.format(created_at)}</span>
+            <span>
+              <i class="fas fa-heart tweet-icons"></i>
+            </span>
+          </footer>
+        </article>
+        <button class="read" type="submit">Read</button>
+        <article class="tweet-container">
+          <header>
+            <span id="tweet-name">username</span>
+            <span id="tweet-handle">user handle</span>
+          </header>
+          <p class="tweet-content">
+            Fusce ex nunc, ultrices id accumsan et, tristique vitae nibh. Ut
+            velit sapien, luctus eu facilisis sit amet, tristique quis neque.
+            Nullam congue ligula non eros bibendum, vitae rutrum lacus accumsan.
+            Quisque volutpat ligula in lacus elementum, id vulputate est
+            tincidunt. Morbi elementum dui dui. Etiam a vestibulum magna, quis
+            pulvinar nulla. Mauris ac laoreet turpis, sed scelerisque urna.
+            Donec luctus enim sit amet imperdiet dictum. Suspendisse a pretium
+            dolor.
+          </p>
+          <footer class="tweet-footer">
+            <span>${timeago.format(created_at)}</span>
+            <span>
+              <i class="fas fa-heart tweet-icons"></i>
+            </span>
+          </footer>
+        </article>
+        <button class="read" type="submit">Read</button>
+        <article class="tweet-container">
+          <header>
+            <span id="tweet-name">username</span>
+            <span id="tweet-handle">user handle</span>
+          </header>
+          <p class="tweet-content">
+            Phasellus a mauris nec metus consequat consequat. In porta ipsum et
+            tempus cursus. Vivamus sit amet erat metus. Mauris dictum justo ut
+            lacus suscipit, at semper metus gravida. Maecenas ac fermentum arcu.
+            Nam sapien lacus, viverra pretium iaculis sit amet, porta non nisl.
+            Proin nec rutrum lacus. Suspendisse sagittis velit luctus dui s
+          </p>
+          <footer class="tweet-footer">
+            <span>${timeago.format(created_at)}</span>
+            <span>
+              <i class="fas fa-heart tweet-icons"></i>
+            </span>
+          </footer>
+        </article>
+        <button class="read" type="submit">Read</button>
+      </section>
+      <section class="in-progress">
+        <!-- In Progress Stories -->
+        <h1>In Progress Stories</h1>
+        <article class="tweet-container">
+          <header>
+            <span id="tweet-name">username</span>
+            <span id="tweet-handle">user handle</span>
+          </header>
+          <p class="tweet-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
+            dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
+            porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
+            urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel
+            nisi et leo accumsan cursus. Proin gravida volutpat velit ac
+            commodo. Vivamus sed posuere nisi. Sed pellentesque hendrerit
+            mattis. Class aptent taciti sociosqu ad litora torquent per conubia
+            nostra, per inceptos himenaeos. Pellentesque ornare dictum dapibus.
+            Nullam accumsan varius turpis quis ultricies. Quisque sodales tortor
+            ac tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem
+            rhoncus, eleifend dui a, luctus felis. Class aptent taciti sociosqu
+            ad litora torquent per conubia nostra, per inceptos himenaeos.
+          </p>
+          <footer class="tweet-footer">
+            <span>${timeago.format(created_at)}</span>
+            <span>
+              <i class="fas fa-heart tweet-icons"></i>
+            </span>
+          </footer>
+        </article>
+        <button class="contribute" type="submit">Contribute</button>
+        <article class="tweet-container">
+          <header>
+            <span id="tweet-name">username</span>
+            <span id="tweet-handle">user handle</span>
+          </header>
+          <p class="tweet-content">
+            Fusce ex nunc, ultrices id accumsan et, tristique vitae nibh. Ut
+            velit sapien, luctus eu facilisis sit amet, tristique quis neque.
+            Nullam congue ligula non eros bibendum, vitae rutrum lacus accumsan.
+            Quisque volutpat ligula in lacus elementum, id vulputate est
+            tincidunt. Morbi elementum dui dui. Etiam a vestibulum magna, quis
+            pulvinar nulla. Mauris ac laoreet turpis, sed scelerisque urna.
+            Donec luctus enim sit amet imperdiet dictum. Suspendisse a pretium
+            dolor.
+          </p>
+          <footer class="tweet-footer">
+            <span>${timeago.format(created_at)}</span>
+            <span>
+              <i class="fas fa-heart tweet-icons"></i>
+            </span>
+          </footer>
+        </article>
+        <button class="contribute" type="submit">Contribute</button>
+        <article class="tweet-container">
+          <header>
+            <span id="tweet-name">username</span>
+            <span id="tweet-handle">user handle</span>
+          </header>
+          <p class="tweet-content">
+            Phasellus a mauris nec metus consequat consequat. In porta ipsum et
+            tempus cursus. Vivamus sit amet erat metus. Mauris dictum justo ut
+            lacus suscipit, at semper metus gravida. Maecenas ac fermentum arcu.
+            Nam sapien lacus, viverra pretium iaculis sit amet, porta non nisl.
+            Proin nec rutrum lacus. Suspendisse sagittis velit luctus dui s
+          </p>
+          <footer class="tweet-footer">
+            <span>${timeago.format(created_at)}</span>
+            <span>
+              <i class="fas fa-heart tweet-icons"></i>
+            </span>
+          </footer>
+        </article>
+        <button class="contribute" type="submit">Contribute</button>
       </section>
     </main>
     <button class="back-to-top">
