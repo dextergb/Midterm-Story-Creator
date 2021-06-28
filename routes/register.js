@@ -1,44 +1,53 @@
+const express = require("express");
+const router = express.Router();
+const db = require("../db/database");
+const getUserById = require('../db/database');
+
 // registration section
 
-const findUserByEmail = (email, users) => {
-  for (let user of Object.keys(users)) {
-    if (users[user].email === email) {
-      return users[user];
-    }
-  }
-  //if not match
-  return undefined;
+const findUserByEmail = (mail) => {
+  db.query('SELECT * FROM users WHERE email = $1', [mail])
+  .then((data) => {
+    console.log("This coming====== ", data.rows[0]);
+    return data.rows[0];
+  })
 };
 
+//findUserByEmail("yahoo@yahoo.com");
 
-app.get("/register", (req, res) => {
-  const templateVars = { user: users[req.session["user_id"]] };
-  res.render("register", templateVars);
-});
+module.exports = () => {
+  router.get("/", (req, res) => {
+    res.send("Got it");
+    //res.render("index.ejs")
+  });
 
-app.post("/register", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  const user = findUserByEmail(email, users);
-  if (email === '' || password === '') {
-    return res.send('Error: You need an Email and Password to Register', 400);
-  }
-  if (!user) {
-    const userId = addNewUser(email, password);
-    req.session["user_id"] = userId;
+  router.post("/", (req, res) => {
+    const email = req.body.email;
+    const fullName = req.body.fullName;
+    if (email === '' || fullName === '') {
+      return res.status(400).send({message: 'Error: You need an Email and Full Name to Register'});
+    }
+    const body = req.body;
+    const user = findUserByEmail(email);
+    if (user) {
+      return res.status(400).send({message: 'Error: This user exist'});
+    }
+    db.query(`INSERT INTO users (full_name, email, nick_name)
+    VALUES (body.full_name, body.email, body.nick_name)`)
+    .then(data => {
+      console.log(" ++++++++ ", data.rows)
+      const newUser = data.rows[0];
+      console.log("This is a new user:", newUser);
+
+      req.session["user_id"] = newUser.id;
+      res.redirect("/main-page");
+    })
+
     //res.cookie('user_id', userId);
-    res.redirect("/urls");
-  } else {
-    res.status(403).send('403: Bad Request. You have to use another combination"');
-  }
-});
 
-const findUserByEmail = (email, users) => {
-  for (let user of Object.keys(users)) {
-    if (users[user].email === email) {
-      return users[user];
-    }
-  }
-  //if not match
-  return undefined;
+  });
+  return router;
 };
+
+
+
