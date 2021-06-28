@@ -17,8 +17,8 @@ const findUserByEmail = (mail) => {
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    res.send("Got it");
-    //res.render("index.ejs")
+    //res.send("Got it");
+    res.render("register.ejs")
   });
 
   router.post("/", (req, res) => {
