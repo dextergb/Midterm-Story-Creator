@@ -1,4 +1,4 @@
-.new-tweet {
+.new-collab {
   background-color: rgb(231, 232, 236);
   margin-top: 30px;
   margin-bottom: 30px;
@@ -7,11 +7,11 @@
   padding: 10px;
 }
 
-.tweet-form {
+.collab-form {
   width: 100%;
 }
 
-#tweet-text {
+#collab-text {
   border: none;
   border-bottom: 3px solid black;
   width: 100%;
@@ -21,14 +21,14 @@
   font-weight: bold;
 }
 
-#tweet-button {
+#collab-button {
   font-family: "Bungee", sans-serif;
   color: white;
   background-color: #4056a1;
   cursor: pointer;
 }
 
-#tweet-button:hover {
+#collab-button:hover {
   background: rgb(30, 30, 199);
 }
 
