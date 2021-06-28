@@ -23,7 +23,8 @@ module.exports = () => {
 
   router.post("/", (req, res) => {
     const email = req.body.email;
-    const fullName = req.body.fullName;
+    const fullName = req.body.full_name;
+    //const nickName = req.body.nick_name;
     if (email === '' || fullName === '') {
       return res.status(400).send({message: 'Error: You need an Email and Full Name to Register'});
     }
