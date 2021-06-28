@@ -6,7 +6,8 @@ const db = require("../db/database");
 module.exports = () => {
   router.get("/", (req, res) => {
     db.query(
-      `SELECT story_body, user_id, votes, completed FROM stories
+      `SELECT stories.story_body, stories.user_id, votes, completed, users.nick_name FROM stories
+      INNER JOIN users ON stories.user_id = users.id
     `
     )
       .then((response) => {
