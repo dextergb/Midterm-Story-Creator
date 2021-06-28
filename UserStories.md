@@ -25,3 +25,5 @@
 - As a user I want to be able to see upvotes/all current votes of a contribution.
 
 - As the creator of a story I want to be able to mark a story as completed by clicking a complete story button.
+
+- As a user I want to be able to create a story or add to a story anonymously.

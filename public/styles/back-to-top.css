@@ -1,0 +1,43 @@
+.back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  outline: none;
+  background-color: #4056a1;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 18px;
+}
+
+.back-to-top:hover {
+  background-color: rgb(30, 30, 199);
+}
+
+#arrow-up {
+  color: red;
+  font-size: 30px;
+  margin-top: 8px;
+  display: inline-block;
+  position: relative;
+  -moz-animation: bounce 1s infinite linear;
+  -o-animation: bounce 1s infinite linear;
+  -webkit-animation: bounce 1s infinite linear;
+  animation: bounce 1s infinite linear;
+}
+@keyframes bounce {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -0.3em;
+  }
+  100% {
+    top: 0;
+  }
+}
