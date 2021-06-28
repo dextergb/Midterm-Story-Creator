@@ -42,11 +42,13 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const loginRoute = require("./routes/login");
+const createRoute = require("./routes/new-story");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes());
 app.use("/widgets", widgetsRoutes());
 app.use("/login", loginRoute());
+app.use("/create", createRoute());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
