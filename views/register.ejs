@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Information -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Home Page</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      type="text/css"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/register.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/styles/responsive-design.css"
+      type="text/css"
+    />
+
+    <!-- External JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/back-to-top.js"></script>
+    <script type="text/javascript" src="/scripts/nav.js"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <%- include('partials/_nav') %> <%- include('partials/_header') %>
+
+    <main class="register-main">
+      <form action="/register" method="POST">
+        <div class="register">
+          <h2>Register</h2>
+          <label>Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="email"
+            name="email"
+          />
+        </div>
+        <div class="register-password">
+          <label>Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="passoword"
+            placeholder="password"
+            name="password"
+          />
+        </div>
+        <div class="register-submit">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </main>
+    <button class="back-to-top">
+      <i class="fas fa-angle-double-up" id="arrow-up"></i>
+    </button>
+  </body>
+</html>
