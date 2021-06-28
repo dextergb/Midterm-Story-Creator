@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
-const getUserById = require('../db/database');
+
 
 // registration section
 
