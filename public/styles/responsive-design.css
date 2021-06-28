@@ -1,0 +1,29 @@
+/* Smaller screen styles */
+@media only screen and (max-width: 768px) {
+  header.main-header {
+    max-height: 120px;
+    display: flex;
+    flex-direction: row;
+    /* margin-top: 30px; */
+  }
+
+  .description {
+    font-size: 30px;
+  }
+}
+/* Desktop styles */
+@media only screen and (min-width: 1024px) {
+  .main-header {
+    width: 33%;
+    float: left;
+    position: fixed;
+    margin-top: 60px;
+    margin-left: 35px;
+  }
+  .container {
+    width: 60%;
+    float: right;
+    margin-top: 30px;
+    padding-right: 35px;
+  }
+}

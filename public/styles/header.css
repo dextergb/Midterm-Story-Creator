@@ -1,0 +1,15 @@
+header.main-header {
+  height: 400px;
+  background-color: #cc8800;
+  background-image: url("https://www.transparenttextures.com/patterns/notebook.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.description {
+  font-size: 30px;
+  color: black;
+}
