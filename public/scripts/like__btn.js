@@ -1,19 +1,30 @@
 $(document).ready(function () {
-  const likeBtn = document.querySelector(".like__btn");
-  let likeIcon = document.querySelector("#icon"),
-    count = document.querySelector("#count");
+  /*
+   * Love button for Design it & Code it
+   * http://designitcodeit.com/i/9
+   */
+  $(".btn-counter").on("click", function (event, count) {
+    event.preventDefault();
 
-  let clicked = false;
+    var $this = $(this),
+      count = $this.attr("data-count"),
+      active = $this.hasClass("active"),
+      multiple = $this.hasClass("multiple-count");
 
-  likeBtn.addEventListener("click", () => {
-    if (!clicked) {
-      clicked = true;
-      likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
-      count.textContent++;
-    } else {
-      clicked = false;
-      likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
-      count.textContent--;
-    }
+    // First method, allows to add custom function
+    // Use when you want to do an ajax request
+    /* if (multiple) {
+  $this.attr('data-count', ++count);
+  // Your code here
+  } else {
+  $this.attr('data-count', active ? --count : ++count).toggleClass('active');
+  // Your code here
+  } */
+
+    // Second method, use when ... I dunno when but it looks cool and that's why it is here
+    $.fn.noop = $.noop;
+    $this
+      .attr("data-count", !active || multiple ? ++count : --count)
+      [multiple ? "noop" : "toggleClass"]("active");
   });
 });
