@@ -13,7 +13,7 @@ module.exports = () => {
     )
       .then((response) => {
         const templateVars = {
-          rows: response.rows,
+          stories: response.rows,
         };
         console.log(response.rows);
 
