@@ -1,8 +1,6 @@
 $(document).ready(function () {
-  /*
-   * Love button for Design it & Code it
-   * http://designitcodeit.com/i/9
-   */
+  const db = require("../../db/database");
+
   $(".btn-counter").on("click", function (event, count) {
     event.preventDefault();
 
@@ -11,18 +9,12 @@ $(document).ready(function () {
       active = $this.hasClass("active"),
       multiple = $this.hasClass("multiple-count");
 
-    // First method, allows to add custom function
-    // Use when you want to do an ajax request
-    /* if (multiple) {
-  $this.attr('data-count', ++count);
-  // Your code here
-  } else {
-  $this.attr('data-count', active ? --count : ++count).toggleClass('active');
-  // Your code here
-  } */
-
-    // Second method, use when ... I dunno when but it looks cool and that's why it is here
     $.fn.noop = $.noop;
+    db.query(` SELECT story_id, votes FROM stories
+    UPDATE stories
+    SET votes = votes + 1
+    WHERE story_id = $1
+    `);
     $this
       .attr("data-count", !active || multiple ? ++count : --count)
       [multiple ? "noop" : "toggleClass"]("active");
