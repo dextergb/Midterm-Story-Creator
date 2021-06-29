@@ -47,6 +47,7 @@ const createRoute = require("./routes/new-story");
 const storiesRoutes = require("./routes/stories");
 const mainPageRoute = require("./routes/main-page");
 const userRegister = require("./routes/register");
+const voteButtonRoute = require("./routes/vote_button");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes());
@@ -55,6 +56,7 @@ app.use("/create", createRoute());
 app.use("/stories", storiesRoutes()); // maybe need to change
 app.use("/", mainPageRoute());
 app.use("/register", userRegister());
+app.use("/vote_button", voteButtonRoute());
 // Note: mount other resources here, using the same pattern above
 
 // Home page

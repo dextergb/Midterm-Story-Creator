@@ -85,12 +85,13 @@
           <p class="story-content"><%= story.story_body %></p>
           <footer class="story-footer">
             <button
+              id="<%= story.id %>"
               href="#"
               title="Love it"
               class="btn btn-counter"
-              data-count="0"
             >
-              <span>&#x2764;</span>
+              <span id="<%= story.id %>" data-count="0">&#x2764;</span>
+              <%= story.votes %>
             </button>
           </footer>
         </article>
@@ -158,12 +159,14 @@
           <p class="story-content"><%= story.story_body %></p>
           <footer class="story-footer">
             <button
+              id="<%= story.id %>"
               href="#"
               title="Love it"
               class="btn btn-counter"
               data-count="0"
             >
-              <span>&#x2764;</span>
+              <span id="<%= story.id %>">&#x2764;</span>
+              <%= story.votes %>
             </button>
           </footer>
         </article>
