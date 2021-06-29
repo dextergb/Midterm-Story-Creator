@@ -1,3 +1,4 @@
+const { Template } = require("ejs");
 const { response } = require("express");
 const express = require("express");
 const router = express.Router();
@@ -11,9 +12,12 @@ module.exports = () => {
     `
     )
       .then((response) => {
+        const templateVars = {
+          rows: response.rows,
+        };
         console.log(response.rows);
-        const stories = JSON.stringify(response.rows);
-        res.render("index.ejs");
+
+        res.render("index.ejs", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

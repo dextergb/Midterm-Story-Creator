@@ -16,10 +16,11 @@ module.exports = () => {
   });
 
   router.post("/", (req, res) => {
-    const newStoryBody = req.params.body;
+    const body = req.body;
 
     db.query(
-      `INSET INTO stories (user_id, story_body, votes, completed, user_name) VALUES ($1,$2,$3,$4,$5)`
+      `INSET INTO stories (user_id, story_body, votes, completed, user_name) VALUES ($1,$2,$3,$4,$5)`,
+      []
     );
   });
 
