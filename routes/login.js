@@ -20,8 +20,7 @@ module.exports = () => {
   });
   router.post("/", (req, res) => {
     const email = req.body.email;
-    const user = req.body.user;
-    const username = authenticationOfUsers(user, email, db);
+    const username = authenticationOfUsers(email, db);
     if (username) {
       req.session["user_id"] = user.id;
       res.redirect("/");
