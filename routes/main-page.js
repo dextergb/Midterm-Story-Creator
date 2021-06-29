@@ -11,7 +11,9 @@ module.exports = () => {
     `
     )
       .then((response) => {
-        res.json(response.rows);
+        console.log(response.rows);
+        const stories = JSON.stringify(response.rows);
+        res.render("index.ejs");
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
