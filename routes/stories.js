@@ -43,21 +43,32 @@ module.exports = () => {
   })
 
   // should be for user, not for all
-  router.get("/:", (req, res) => {
+  router.get("/:storyID/complete", (req, res) => {
     const userId = req.session["user_id"];
 
       if (!userId) {
         // if user is not logged , he will be redirected to the main page again
       return res.redirect('/login');
       }
-      db.query(`SELECT stories.*, users.nick_name
-      FROM stories
-      JOIN users ON stories.user_id = users.id
-      WHERE stories.user_id = $1`, [userId])
+      res.render("stories.ejs");
+  });
+
+  // To get story completed and redirect to the main page
+  router.post("/:storyID/complete", (req, res) => {
+    const userId = req.session["user_id"];
+    const storyId = req.session.story_id;
+
+      if (!userId) {
+        // if user is not logged , he will be redirected to the main page again
+      return res.redirect('/login');
+      }
+      db.query(`UPDATE stories
+      SET completed = true
+      WHERE story_id = $1;`, [storyId])
         .then((data) => {
           console.log(data.rows[0]);
           //const stories = data.rows[0]["story_body"];
-          res.render("stories.ejs");
+          res.render("index.ejs");
         })
         .catch((err) => {
           res.status(500).json({ error: err.message });
@@ -66,3 +77,9 @@ module.exports = () => {
   return router;
 };
 
+// to complete the story
+/*
+UPDATE stories
+SET completed = true
+WHERE story_id = $1;
+*/
