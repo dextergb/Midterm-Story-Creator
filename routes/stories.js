@@ -75,7 +75,7 @@ module.exports = () => {
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
-    if (authenticationOfUsers(userId, userEmail, db) === true) {
+    if (authenticationOfUsers(userEmail, db) === true) {
       db.query(
         `UPDATE stories
       SET completed = true

@@ -10,7 +10,7 @@ module.exports = () => {
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
-    if (authenticationOfUsers(userId, userEmail, db) === true) {
+    if (authenticationOfUsers(userEmail, db) === true) {
       return res.render("stories_new.ejs");
     }
   });
