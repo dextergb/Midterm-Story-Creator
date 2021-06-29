@@ -15,7 +15,7 @@ module.exports = () => {
       const templateVars = {
         user: null,
       };
-      res.send("loginpage");
+      res.render("login.ejs");
     }
   });
   router.post("/", (req, res) => {
