@@ -25,7 +25,7 @@ app.use(
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(
   "/styles",
   sass({
@@ -39,14 +39,22 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
-const userRegister = require("./routes/register")
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes());
-app.use("/api/widgets", widgetsRoutes());
+
+const loginRoute = require("./routes/login");
+const createRoute = require("./routes/new-story");
+const storiesRoutes = require("./routes/stories");
+const mainPageRoute = require("./routes/main-page");
+const userRegister = require("./routes/register")
+// Mount all resource routes
+// Note: Feel free to replace the example routes below with your own
+app.use("/users", usersRoutes());
+app.use("/widgets", widgetsRoutes());
+app.use("/login", loginRoute());
+app.use("/create", createRoute());
+app.use("/stories", storiesRoutes()); // maybe need to change
+app.use("/", mainPageRoute());
 app.use("/register", userRegister());
 // Note: mount other resources here, using the same pattern above
 
