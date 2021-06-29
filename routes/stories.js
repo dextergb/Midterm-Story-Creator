@@ -93,12 +93,20 @@ module.exports = () => {
     }
   });
 
+  // count votes for all stories
+  router.post("/:storyID/increment", (req, res) => {
+    let storyId = req.params.storyID;
+    //update the value of votes column in the stories table to +1
+    db.query(`UPDATE stories
+    SET votes = votes + 1
+    WHERE stories.id = $1;`, [storyId])
+    .then((data) => {
+      res.render("index.ejs");
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+  });
   return router;
 };
 
-// to complete the story
-/*
-UPDATE stories
-SET completed = true
-WHERE story_id = $1;
-*/
