@@ -4,6 +4,7 @@ $(document).ready(function () {
     event.preventDefault();
     console.log(`cliecked incerement`)
     // take a story id. Just for now - static
+    //let storyId = req.params.storyID;
     let storyId = 1
     $.ajax({
       method: "POST",
