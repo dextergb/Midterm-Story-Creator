@@ -1,0 +1,36 @@
+.register-main {
+  display: flex;
+  justify-content: center;
+  /* margin: 10px; */
+  padding-bottom: 20px;
+  border: 3px solid black;
+}
+
+/* <main class="register-main">
+<form action="/register" method="POST">
+  <div class="register">
+    <h2>Register</h2>
+    <label>Email Address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="email"
+      name="email"
+    />
+  </div>
+  <div class="register-password">
+    <label>Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="passoword"
+      placeholder="password"
+      name="password"
+    />
+  </div>
+  <div class="register-submit">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+</main> */
