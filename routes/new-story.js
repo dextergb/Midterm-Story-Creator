@@ -2,11 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
 const { response } = require("express");
-<<<<<<< HEAD
-const authenticationOfUsers = require("./helper_functions/helper_functions");
-=======
 const authenticationOfUsers = require("../routes/helper_functions/helper_functions");
->>>>>>> master
 module.exports = () => {
   router.get("/", (req, res) => {
     // console.log("++_+_+_+_+_+_+---");
@@ -20,17 +16,12 @@ module.exports = () => {
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
-<<<<<<< HEAD
-    if (authenticationOfUsers(userEmail, db) === true) {
-      res.render("stories_new.ejs", templateVars);
-=======
     const user = authenticationOfUsers(userEmail, db);
 
     if (user) {
       return res.render("stories_new.ejs", templateVars);
     } else {
       return res.redirect("/login");
->>>>>>> master
     }
   });
   router.post("/", (req, res) => {
