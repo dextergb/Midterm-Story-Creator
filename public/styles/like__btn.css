@@ -37,6 +37,7 @@
   margin-right: -13px;
   position: absolute;
   top: -1px;
+  width: 20px;
 }
 .btn-counter:before {
   transform: rotate(45deg);
