@@ -55,14 +55,18 @@ module.exports = () => {
   });
 
   // should be for user, not for all
-  router.get("/:storyID/complete", (req, res) => {
+  router.get("/:storyID", (req, res) => {
     const userId = req.session["user_id"];
 
     if (!userId) {
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
-    res.render("stories.ejs");
+    const templateVars = {
+      stories: response.rows,
+      userID: req.session.user_id,
+    };
+    res.render("stories.ejs", templateVars);
   });
 
   // To get story completed and redirect to the main page
@@ -84,8 +88,12 @@ module.exports = () => {
       )
         .then((data) => {
           console.log(data.rows[0]);
+          const templateVars = {
+            stories: response.rows,
+            userID: req.session.user_id,
+          };
           //const stories = data.rows[0]["story_body"];
-          res.render("index.ejs");
+          res.render("index.ejs", templateVars);
         })
         .catch((err) => {
           res.status(500).json({ error: err.message });
@@ -97,15 +105,18 @@ module.exports = () => {
   router.post("/:storyID/increment", (req, res) => {
     let storyId = req.params.storyID;
     //update the value of votes column in the stories table to +1
-    db.query(`UPDATE stories
+    db.query(
+      `UPDATE stories
     SET votes = votes + 1
-    WHERE stories.id = $1;`, [storyId])
-    .then((data) => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+    WHERE stories.id = $1;`,
+      [storyId]
+    )
+      .then((data) => {
+        res.render("index.ejs");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   // set the story completed
@@ -129,9 +140,4 @@ module.exports = () => {
   });
 
   return router;
-};
-
-const templateVars = {
-  stories: response.rows,
-  userID: req.session.user_id,
 };

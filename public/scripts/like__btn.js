@@ -1,19 +1,32 @@
 $(document).ready(function () {
-  $('.btn-counter').click(function (event) {
-    // Don't follow the link
+  $(".btn-counter").on("click", function (event, count) {
     event.preventDefault();
-    console.log(`cliecked incerement`)
-    // take a story id. Just for now - static
-    //let storyId = req.params.storyID;
-    let storyId = 1
-    $.ajax({
-      method: "POST",
-      url: `/stories/${storyId}/increment`,
-    }).done((res) => {
-      console.log(`succes updated story: ${res}`)
-    }).fail((err)=>{
-      console.log(`failed update with err: ${err}`)
-    })
+    var $this = $(this),
+      count = $this.attr("data-count"),
+      active = $this.hasClass("active"),
+      multiple = $this.hasClass("multiple-count");
+    $.fn.noop = $.noop;
+    const story_id = $this.attr("id");
+    $(() => {
+      $.ajax({
+        method: "POST",
+        url: "/vote_button",
+        data: { param: story_id },
+      })
+        .then((data) => {
+          console.log("THISISS", data);
+          $(`#vote_count_${story_id}`).text(data.message);
+          $this
+            .attr(
+              "data-count",
+              !active || multiple ? data.message : data.message
+            )
+            [multiple ? "noop" : "toggleClass"]("active");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   });
 });
 

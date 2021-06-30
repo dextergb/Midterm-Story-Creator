@@ -13,15 +13,18 @@ module.exports = () => {
       res.redirect("/");
     } else {
       const templateVars = {
-        user: null,
+        stories: response.rows,
+        userID: req.session.user_id,
       };
-      res.render("login.ejs");
+
+      res.render("login.ejs", templateVars);
     }
   });
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const email = req.body.email;
-    const username = authenticationOfUsers(email, db);
-    if (username) {
+    const user = await authenticationOfUsers(email, db);
+    console.log("user: ", user);
+    if (user) {
       req.session["user_id"] = user.id;
       res.redirect("/");
     } else {

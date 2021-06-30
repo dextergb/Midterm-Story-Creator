@@ -24,7 +24,7 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/like__btn.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
@@ -77,37 +77,27 @@
       <!-- COMPLETED STORIES -->
       <section class="completed">
         <h1>Completed Stories</h1>
+        <% for (const story of stories) { %> <%if(story.completed === true){ %>
         <article class="story-container">
           <header>
-            <span id="story-name">username</span>
+            <span id="story-name"> <%= story.nick_name %></span>
           </header>
-          <p class="story-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
-            dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
-            porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
-            urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel
-            nisi et leo accumsan cursus. Proin gravida volutpat velit ac
-            commodo. Vivamus sed posuere nisi. Sed pellentesque hendrerit
-            mattis. Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra, per inceptos himenaeos. Pellentesque ornare dictum dapibus.
-            Nullam accumsan varius turpis quis ultricies. Quisque sodales tortor
-            ac tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem
-            rhoncus, eleifend dui a, luctus felis. Class aptent taciti sociosqu
-            ad litora torquent per conubia nostra, per inceptos himenaeos.
-          </p>
+          <p class="story-content"><%= story.story_body %></p>
           <footer class="story-footer">
-            <span>${timeago.format(created_at)}</span>
             <button
+              id="<%= story.id %>"
               href="#"
               title="Love it"
               class="btn btn-counter"
-              data-count="0"
             >
-              <span>&#x2764;</span>
+              <span id="<%= story.id %>" data-count="0">&#x2764;</span>
+              <%= story.votes %>
             </button>
           </footer>
         </article>
         <button class="read" type="submit">Read</button>
+
+        <% }%> <% } %>
         <article class="story-container">
           <header>
             <span id="story-name">username</span>
@@ -123,7 +113,6 @@
             dolor.
           </p>
           <footer class="story-footer">
-            <span>${timeago.format(created_at)}</span>
             <button
               href="#"
               title="Love it"
@@ -147,7 +136,6 @@
             Proin nec rutrum lacus. Suspendisse sagittis velit luctus dui s
           </p>
           <footer class="story-footer">
-            <span>${timeago.format(created_at)}</span>
             <button
               href="#"
               title="Love it"
@@ -163,37 +151,29 @@
       <section class="in-progress">
         <!-- In Progress Stories -->
         <h1>In Progress Stories</h1>
+        <% for (const story of stories) { %>
+
         <article class="story-container">
           <header>
-            <span id="story-name">username</span>
+            <span id="story-name"> <%= story.nick_name %></span>
           </header>
-          <p class="story-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
-            dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
-            porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
-            urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel
-            nisi et leo accumsan cursus. Proin gravida volutpat velit ac
-            commodo. Vivamus sed posuere nisi. Sed pellentesque hendrerit
-            mattis. Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra, per inceptos himenaeos. Pellentesque ornare dictum dapibus.
-            Nullam accumsan varius turpis quis ultricies. Quisque sodales tortor
-            ac tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem
-            rhoncus, eleifend dui a, luctus felis. Class aptent taciti sociosqu
-            ad litora torquent per conubia nostra, per inceptos himenaeos.
-          </p>
+          <p class="story-content"><%= story.story_body %></p>
           <footer class="story-footer">
-            <span>${timeago.format(created_at)}</span>
             <button
+              id="<%= story.id %>"
               href="#"
               title="Love it"
               class="btn btn-counter"
               data-count="0"
             >
-              <span>&#x2764;</span>
+              <span id="<%= story.id %>">&#x2764;</span>
+              <span id="vote_count_<%= story.id %>"> <%= story.votes %> </span>
             </button>
           </footer>
         </article>
         <button class="contribute" type="submit">Contribute</button>
+        <% } %>
+
         <article class="story-container">
           <header>
             <span id="story-name">username</span>
@@ -209,7 +189,6 @@
             dolor.
           </p>
           <footer class="story-footer">
-            <span>${timeago.format(created_at)}</span>
             <button
               href="#"
               title="Love it"
@@ -233,7 +212,6 @@
             Proin nec rutrum lacus. Suspendisse sagittis velit luctus dui s
           </p>
           <footer class="story-footer">
-            <span>${timeago.format(created_at)}</span>
             <button
               href="#"
               title="Love it"

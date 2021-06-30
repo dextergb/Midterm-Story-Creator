@@ -1,14 +1,13 @@
 const db = require("../../db/database");
 
-const authenticationOfUsers = (email, db) => {
-  const user = db.query(
-    `SELECT users.nick_name users.email FROM users
+const authenticationOfUsers = async (email, db) => {
+  const result = await db.query(
+    `SELECT users.id, users.nick_name, users.email FROM users
     WHERE users.email = $1`,
     [email]
   );
-
-  if (user) {
-    return user;
+  if (result.rows.length > 0) {
+    return result.rows[0];
   }
   return false;
 };
