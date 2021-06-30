@@ -7,53 +7,57 @@ const { response } = require("express");
 module.exports = () => {
   router.get("/:storyID", (req, res) => {
     const storyId = req.params.storyID;
-    const storyBody = req.params.story_body;
     db.query(
-      `SELECT stories.*, users.nick_name
+      `SELECT stories.*, users.nick_name, users.id
     FROM stories
     JOIN users ON stories.user_id = users.id
     WHERE stories.id = $1`,
       [storyId]
     )
+
       .then((data) => {
+        const stories = data.rows[0];
         const templateVars = {
-          stories: response.rows,
-          userID: req.session.user_id,
-          stories,
+          stories: stories,
+          userID: data.rows[0].user_id,
         };
-        const stories = data.rows[0]["story_body"];
-        res.render("stories", templateVars);
+        res.render("stories.ejs", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
-  // GET for contribute
   router.get("/:storyID/contribute", (req, res) => {
-    //res.send("Got it");
-    const templateVars = {
-      stories: response.rows,
-      userID: req.session.user_id,
-      stories,
-    };
-    const stories = data.rows[0]["story_body"];
-    res.render("stories_collab", templateVars);
+    // const stories = data.rows[0];
+    const storyId = req.params.storyID;
+    db.query(
+      `SELECT stories.*, users.nick_name, users.id
+    FROM stories
+    JOIN users ON stories.user_id = users.id
+    WHERE stories.id = $1`,
+      [storyId]
+    )
+      .then((data) => {
+        const stories = data.rows[0];
+        const templateVars = {
+          stories: stories,
+          userID: data.rows[0].user_id,
+        };
+        res.render("stories_collab", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
-  // POST for contribute
+
   router.post("/:storyID/contribute", (req, res) => {
     db.query(
       `INSERT INTO contributed_stories
-    (story_id, user_id, contributed_body, contributed_vote, accepted_contribution)
+    (story_id, user_id, contributed_body,)
     VALUES
-    ($1, $2, $3, $4, $5) RETURNING*`,
-      [
-        story_id,
-        user_id,
-        contributed_body,
-        contributed_vote,
-        accepted_contribution,
-      ]
+    ($1, $2, $3) RETURNING*`,
+      [story_id, user_id, contributed_body]
     )
       .then(() => {
         res.redirect("/:storyID");
@@ -61,23 +65,6 @@ module.exports = () => {
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-  });
-
-  // should be for user, not for all
-  router.get("/:storyID", (req, res) => {
-    const userId = req.session["user_id"];
-
-    if (!userId) {
-      // if user is not logged , he will be redirected to the main page again
-      return res.redirect("/login");
-    }
-    const templateVars = {
-      stories: response.rows,
-      userID: req.session.user_id,
-      stories,
-    };
-    const stories = data.rows[0]["story_body"];
-    res.render("stories.ejs", templateVars);
   });
 
   // To get story completed and redirect to the main page
@@ -115,3 +102,12 @@ module.exports = () => {
 
   return router;
 };
+
+// db.query(
+//   `SELECT stories.*, contributed_stories.contributed_body, users.nick_name
+// FROM stories
+// JOIN users ON stories.user_id = users.id
+// JOIN contributed_stories ON stories.id = contributed_stories.story_id
+// WHERE stories.id = $1`,
+//   [storyId]
+// )

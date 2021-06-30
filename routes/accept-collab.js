@@ -4,4 +4,8 @@ const db = require("../db/database");
 const authenticationOfUsers = require("./helper_functions/helper_functions");
 const { response } = require("express");
 
-module.exports = () => {};
+module.exports = () => {
+  router.get("/", (req, res) => {
+    db.query("SELECT story_body");
+  });
+};

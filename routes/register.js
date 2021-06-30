@@ -30,13 +30,6 @@ module.exports = () => {
       `INSERT INTO users (full_name, email, nick_name)
       VALUES ($1,$2,$3) RETURNING *`,
       [body.full_name, body.email, body.nick_name]
-<<<<<<< HEAD
-    ).then((data) => {
-      const newUser = data.rows[0];
-      req.session["user_id"] = newUser.id;
-      res.redirect("/");
-    });
-=======
     )
       .then((data) => {
         // console.log(" ++++++++ ", data.rows);
@@ -50,7 +43,6 @@ module.exports = () => {
         console.error(e); // "oh, no!"
         console.log("message: ", e);
       });
->>>>>>> master
 
     //res.cookie('user_id', userId);
   });
