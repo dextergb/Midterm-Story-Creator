@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
+const { response } = require("express");
 const authenticationOfUsers = require("./helper_functions/helper_functions");
 // registration section
 
@@ -8,8 +9,12 @@ const authenticationOfUsers = require("./helper_functions/helper_functions");
 
 module.exports = () => {
   router.get("/", (req, res) => {
+    const templateVars = {
+      stories: response.rows,
+      userID: req.session.user_id,
+    };
     //res.send("Got it");
-    res.render("register.ejs");
+    res.render("register.ejs", templateVars);
   });
 
   router.post("/", async (req, res) => {

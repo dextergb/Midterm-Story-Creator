@@ -13,9 +13,11 @@ module.exports = () => {
       res.redirect("/");
     } else {
       const templateVars = {
-        user: null,
+        stories: response.rows,
+        userID: req.session.user_id,
       };
-      res.render("login.ejs");
+
+      res.render("login.ejs", templateVars);
     }
   });
   router.post("/", (req, res) => {
