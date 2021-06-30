@@ -67,26 +67,34 @@
         <div class="box">
           <h1>Register</h1>
 
-          <input type="email" name="email" placeholder="email" class="email" />
-
           <input
             type="email"
-            name="full name"
-            placeholder="full name"
             class="email"
-          />
-          <input
-            type="email"
-            name="nickname"
-            placeholder="nickname"
-            class="email"
+            name="email"
+            placeholder="Email"
+            required
           />
 
-          <button type="submit"><div class="sign-up">Register</div></button>
+          <input
+            type="name"
+            class="email"
+            name="name"
+            placeholder="Full Name"
+            required
+          />
+          <input
+            type="nickname"
+            class="email"
+            name="email"
+            placeholder="Nickname"
+            required
+          />
+
+          <input type="submit" value="Register" class="sign-up" />
         </div>
       </form>
-      <span>Forgot your password?</span>
-      <span class="click-here">Click Here!</span>
+      <a>Already registered?</a>
+      <a href="/login" class="click-here">Click Here!</a>
     </div>
 
     <script
