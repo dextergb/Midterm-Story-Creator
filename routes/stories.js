@@ -30,18 +30,19 @@ module.exports = () => {
 
   router.get("/:storyID/contribute", (req, res) => {
     // const stories = data.rows[0];
-    const storyId = req.params.storyID;
+    const story_id = req.params.storyID;
     db.query(
       `SELECT stories.*, users.nick_name, users.id
     FROM stories
     JOIN users ON stories.user_id = users.id
     WHERE stories.id = $1`,
-      [storyId]
+      [story_id]
     )
       .then((data) => {
         const stories = data.rows[0];
         const templateVars = {
           stories: stories,
+          storyID: story_id,
           userID: data.rows[0].user_id,
         };
         res.render("stories_collab", templateVars);
@@ -52,15 +53,19 @@ module.exports = () => {
   });
 
   router.post("/:storyID/contribute", (req, res) => {
+    const story_id = req.params.storyID;
+    const user_id = req.session.user_id;
+    const contributed_body = req.body.text;
+
     db.query(
       `INSERT INTO contributed_stories
-    (story_id, user_id, contributed_body,)
+    (story_id, user_id, contributed_body)
     VALUES
     ($1, $2, $3) RETURNING*`,
       [story_id, user_id, contributed_body]
     )
       .then(() => {
-        res.redirect("/:storyID");
+        res.redirect(`contribute`);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
