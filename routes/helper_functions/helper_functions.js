@@ -2,7 +2,7 @@ const db = require("../../db/database");
 
 const authenticationOfUsers = async (email, db) => {
   const result = await db.query(
-    `SELECT users.nick_name, users.email FROM users
+    `SELECT users.id, users.nick_name, users.email FROM users
     WHERE users.email = $1`,
     [email]
   );
