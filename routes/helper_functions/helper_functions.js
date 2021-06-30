@@ -7,7 +7,7 @@ const authenticationOfUsers = async (email, db) => {
     [email]
   );
   if (result.rows.length > 0) {
-    return rows[0];
+    return result.rows[0];
   }
   return false;
 };
