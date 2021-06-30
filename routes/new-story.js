@@ -19,8 +19,8 @@ module.exports = () => {
     const body = req.body;
 
     db.query(
-      `INSET INTO stories (user_id, story_body, votes, completed, user_name) VALUES ($1,$2,$3,$4,$5)`,
-      []
+      `INSET INTO stories (user_id, story_body, user_name) VALUES ($1,$2,$3)`,
+      [body.user_id, body.story_body, body.user_name]
     );
   });
 
