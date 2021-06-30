@@ -75,7 +75,7 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <!-- COMPLETED STORIES -->
-      <section class="completed">
+      <section class="completed container-column">
         <h1>Completed Stories</h1>
         <% for (const story of stories) { %> <%if(story.completed === true){ %>
         <article class="story-container">
@@ -148,8 +148,8 @@
         </article>
         <button class="read" type="submit">Read</button>
       </section>
-      <section class="in-progress">
-        <!-- In Progress Stories -->
+      <!-- In Progress Stories -->
+      <section class="in-progress container-column">
         <h1>In Progress Stories</h1>
         <% for (const story of stories) { %>
 
