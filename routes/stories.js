@@ -3,12 +3,11 @@ const router = express.Router();
 const db = require("../db/database");
 const authenticationOfUsers = require("./helper_functions/helper_functions");
 const { response } = require("express");
+
 module.exports = () => {
   router.get("/:storyID", (req, res) => {
     const storyId = req.params.storyID;
     const storyBody = req.params.story_body;
-    //console.log(storyId);
-    //console.log(query);
     db.query(
       `SELECT stories.*, users.nick_name
     FROM stories
@@ -17,9 +16,13 @@ module.exports = () => {
       [storyId]
     )
       .then((data) => {
-        console.log(data.rows[0]);
+        const templateVars = {
+          stories: response.rows,
+          userID: req.session.user_id,
+          stories,
+        };
         const stories = data.rows[0]["story_body"];
-        res.json({ stories });
+        res.render("stories", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -32,7 +35,9 @@ module.exports = () => {
     const templateVars = {
       stories: response.rows,
       userID: req.session.user_id,
+      stories,
     };
+    const stories = data.rows[0]["story_body"];
     res.render("stories_collab", templateVars);
   });
   // POST for contribute
@@ -50,8 +55,8 @@ module.exports = () => {
         accepted_contribution,
       ]
     )
-      .then((response) => {
-        res.json(response.rows);
+      .then(() => {
+        res.redirect("/:storyID");
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -69,7 +74,9 @@ module.exports = () => {
     const templateVars = {
       stories: response.rows,
       userID: req.session.user_id,
+      stories,
     };
+    const stories = data.rows[0]["story_body"];
     res.render("stories.ejs", templateVars);
   });
 
@@ -91,11 +98,12 @@ module.exports = () => {
         [storyId]
       )
         .then((data) => {
-          console.log(data.rows[0]);
           const templateVars = {
             stories: response.rows,
             userID: req.session.user_id,
+            stories,
           };
+          const stories = data.rows[0]["story_body"];
           //const stories = data.rows[0]["story_body"];
           res.render("index.ejs", templateVars);
         })
