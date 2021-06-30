@@ -44,8 +44,8 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const loginRoute = require("./routes/login");
 const createRoute = require("./routes/new-story");
-const storiesRoutes = require("./routes/stories");
-const mainPageRoute = require("./routes/main-page");
+const storiesRoute = require("./routes/stories");
+const indexRoute = require("./routes/index");
 const userRegister = require("./routes/register");
 const voteButtonRoute = require("./routes/vote_button");
 const logoutRoute = require("./routes/logout");
@@ -55,8 +55,8 @@ const logoutRoute = require("./routes/logout");
 app.use("/users", usersRoutes());
 app.use("/login", loginRoute());
 app.use("/create", createRoute());
-app.use("/stories", storiesRoutes()); // maybe need to change
-app.use("/", mainPageRoute());
+app.use("/stories", storiesRoute()); // maybe need to change
+app.use("/", indexRoute());
 app.use("/register", userRegister());
 app.use("/vote_button", voteButtonRoute());
 app.use("/logout", logoutRoute());

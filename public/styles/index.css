@@ -6,22 +6,21 @@
   padding: 10px;
 }
 
-.completed {
-  border: 3px solid black;
+.container-column {
+  flex: 1 1 0px;
   color: black;
   padding: 10px;
   font-weight: bold;
   word-break: break-all;
+  border: 3px solid black;
 }
 
+/* .completed {
+  border: 3px solid black;
+} */
+
 .in-progress {
-  border-bottom: 3px solid black;
-  border-top: 3px solid black;
-  border-right: 3px solid black;
-  color: black;
-  padding: 10px;
-  font-weight: bold;
-  word-break: break-all;
+  border-left: none;
 }
 
 .contribute {

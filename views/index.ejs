@@ -24,7 +24,7 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/like__btn.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
@@ -74,7 +74,7 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <!-- COMPLETED STORIES -->
-      <section class="completed">
+      <section class="completed container-column">
         <h1>Completed Stories</h1>
         <% for (const story of stories) { %> <%if(story.completed === true){ %>
         <article class="story-container">
@@ -94,9 +94,14 @@
             </button>
           </footer>
         </article>
+<<<<<<< HEAD
         <button class="read" type="submit">
           <a href="/stories/<%=story.id%>">READ</a>
         </button>
+=======
+        <button class="read" type="submit">Read</button>
+
+>>>>>>> master
         <% }%> <% } %>
         <article class="story-container">
           <header>
@@ -148,8 +153,8 @@
         </article>
         <button class="read" type="submit">Read</button>
       </section>
-      <section class="in-progress">
-        <!-- In Progress Stories -->
+      <!-- In Progress Stories -->
+      <section class="in-progress container-column">
         <h1>In Progress Stories</h1>
         <% for (const story of stories) { %>
 

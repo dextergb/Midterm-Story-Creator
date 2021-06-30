@@ -26,9 +26,10 @@ module.exports = () => {
     console.log("user: ", user);
     if (user) {
       req.session["user_id"] = user.id;
+      req.session.email = user.email;
       res.redirect("/");
     } else {
-      res.status(401).send("Please Try Again.");
+      res.status(401).send("User Does Not Exist");
     }
   });
   return router;

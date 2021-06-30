@@ -36,7 +36,8 @@ module.exports = () => {
         const newUser = data.rows[0];
         console.log("This is a new user:", newUser);
 
-        req.session["user_id"] = newUser.id;
+        req.session.user_id = newUser.id;
+        req.session.email = newUser.email;
         res.redirect("/");
       })
       .catch(function (e) {
