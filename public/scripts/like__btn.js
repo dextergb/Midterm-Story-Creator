@@ -1,5 +1,4 @@
 $(document).ready(function () {
-<<<<<<< HEAD
   $(".btn-counter").on("click", function (event, count) {
     event.preventDefault();
     var $this = $(this),
@@ -27,24 +26,5 @@ $(document).ready(function () {
           console.log(err);
         });
     });
-=======
-  $(".btn-counter").click(function (event) {
-    // Don't follow the link
-    event.preventDefault();
-    console.log(`clicked incerement`);
-    // take a story id. Just for now - static
-    //let storyId = req.params.storyID;
-    let storyId = 1;
-    $.ajax({
-      method: "POST",
-      url: `/stories/${storyId}/increment`,
-    })
-      .done((res) => {
-        console.log(`success updated story: ${res}`);
-      })
-      .fail((err) => {
-        console.log(`failed update with err: ${err}`);
-      });
->>>>>>> 8e12d52959b96616d8dd5605c506a2f2c8df81f3
   });
 });
