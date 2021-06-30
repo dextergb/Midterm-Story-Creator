@@ -14,6 +14,7 @@ module.exports = () => {
       .then((response) => {
         const templateVars = {
           stories: response.rows,
+          userID: req.session.user_id,
         };
         console.log(response.rows);
 
