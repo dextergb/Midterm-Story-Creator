@@ -31,19 +31,23 @@ module.exports = () => {
       return res.status(400).redirect("/register?error=Userinuse");
     }
     const body = req.body;
-
     db.query(
       `INSERT INTO users (full_name, email, nick_name)
       VALUES ($1,$2,$3) RETURNING *`,
       [body.full_name, body.email, body.nick_name]
-    ).then((data) => {
-      // console.log(" ++++++++ ", data.rows);
-      const newUser = data.rows[0];
-      console.log("This is a new user:", newUser);
+    )
+      .then((data) => {
+        // console.log(" ++++++++ ", data.rows);
+        const newUser = data.rows[0];
+        console.log("This is a new user:", newUser);
 
-      req.session["user_id"] = newUser.id;
-      res.redirect("/");
-    });
+        req.session["user_id"] = newUser.id;
+        res.redirect("/");
+      })
+      .catch(function (e) {
+        console.error(e); // "oh, no!"
+        console.log("message: ", e);
+      });
 
     //res.cookie('user_id', userId);
   });
