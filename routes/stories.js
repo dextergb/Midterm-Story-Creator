@@ -55,7 +55,7 @@ module.exports = () => {
   });
 
   // should be for user, not for all
-  router.get("/:storyID/complete", (req, res) => {
+  router.get("/:storyID", (req, res) => {
     const userId = req.session["user_id"];
 
     if (!userId) {
