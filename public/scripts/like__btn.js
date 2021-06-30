@@ -6,7 +6,7 @@ $(document).ready(function () {
       active = $this.hasClass("active"),
       multiple = $this.hasClass("multiple-count");
     $.fn.noop = $.noop;
-    const story_id = event.target.id;
+    const story_id = $this.attr("id");
     $(() => {
       $.ajax({
         method: "POST",
@@ -15,6 +15,7 @@ $(document).ready(function () {
       })
         .then((data) => {
           console.log("THISISS", data);
+          $(`#vote_count_${story_id}`).text(data.message);
           $this
             .attr(
               "data-count",

@@ -20,6 +20,8 @@ module.exports = () => {
   router.post("/", async (req, res) => {
     const email = req.body.email;
     const fullName = req.body.full_name;
+    const userCheck = await authenticationOfUsers(email, db);
+    console.log(userCheck);
     // console.log("MYBODY LIES", req.body);
     //const nickName = req.body.nick_name;
     if (email === "" || fullName === "") {
@@ -27,7 +29,7 @@ module.exports = () => {
         message: "Error: You need an Email and Full Name to Register",
       });
     }
-    if (await authenticationOfUsers(email, db)) {
+    if (userCheck) {
       return res.status(400).redirect("/register?error=Userinuse");
     }
     const body = req.body;
