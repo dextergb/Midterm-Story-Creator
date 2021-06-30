@@ -107,6 +107,26 @@ module.exports = () => {
       res.status(500).json({ error: err.message });
     });
   });
+
+
+
+
+  // set the story completed
+  router.post("/:storyID/increment", (req, res) => {
+    let storyId = req.params.storyID;
+    //update the value of votes column in the stories table to +1
+    db.query(`UPDATE stories
+    SET completed = true
+    WHERE stories.id = $1;`, [storyId])
+    .then((data) => {
+      res.render("stories.ejs");
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+  });
+
+
   return router;
 };
 
