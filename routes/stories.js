@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
 const authenticationOfUsers = require("./helper_functions/helper_functions");
-
+const { response } = require("express");
 module.exports = () => {
   router.get("/:storyID", (req, res) => {
     const storyId = req.params.storyID;
@@ -29,7 +29,11 @@ module.exports = () => {
   // GET for contribute
   router.get("/:storyID/contribute", (req, res) => {
     //res.send("Got it");
-    res.render("stories_collab.ejs");
+    const templateVars = {
+      stories: response.rows,
+      userID: req.session.user_id,
+    };
+    res.render("stories_collab", templateVars);
   });
   // POST for contribute
   router.post("/:storyID/contribute", (req, res) => {
@@ -55,7 +59,7 @@ module.exports = () => {
   });
 
   // should be for user, not for all
-  router.get("/:storyID/complete", (req, res) => {
+  router.get("/:storyID", (req, res) => {
     const userId = req.session["user_id"];
 
     if (!userId) {
@@ -101,22 +105,5 @@ module.exports = () => {
     }
   });
 
-  // count votes for all stories
-  router.post("/:storyID/increment", (req, res) => {
-    let storyId = req.params.storyID;
-    //update the value of votes column in the stories table to +1
-    db.query(
-      `UPDATE stories
-    SET votes = votes + 1
-    WHERE stories.id = $1;`,
-      [storyId]
-    )
-      .then((data) => {
-        res.render("index.ejs");
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
   return router;
 };

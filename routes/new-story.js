@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
 const { response } = require("express");
+const authenticationOfUsers = require("./helper_functions/helper_functions");
 module.exports = () => {
   router.get("/", (req, res) => {
     const userId = req.session["user_id"];
@@ -16,7 +17,7 @@ module.exports = () => {
       return res.redirect("/login");
     }
     if (authenticationOfUsers(userEmail, db) === true) {
-      return res.render("stories_new.ejs", templateVars);
+      res.render("stories_new.ejs", templateVars);
     }
   });
 
