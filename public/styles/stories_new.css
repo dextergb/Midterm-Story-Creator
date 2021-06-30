@@ -3,48 +3,62 @@
   flex-direction: column;
   padding: 20px;
 }
-
-.new-story {
-  background-color: rgb(231, 232, 236);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
+.story-container {
+  border: 2px solid black;
   padding: 10px;
 }
 
-.collab-form {
+#user-name {
+  font-style: italic;
+}
+
+.story-content {
+  color: black;
+}
+
+.new-story {
+  background-color: rgb(231, 232, 236);
+  height: 300px;
+}
+
+.story-form {
   width: 100%;
 }
 
-#collab-text {
+#title {
+  font-style: italic;
+}
+
+#story-text {
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 2px solid black;
   width: 100%;
+  height: 200px;
   /* margin-top: 10px; */
   background-color: transparent;
   color: black;
   font-weight: bold;
 }
 
-#collab-title {
+#story-title {
   border: none;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   width: 20%;
+  height: 30px;
   margin-top: 10px;
   background-color: transparent;
   color: black;
   font-weight: bold;
 }
 
-#collab-button {
-  font-family: "Bungee", sans-serif;
+#story-button {
+  font-family: sans-serif;
   color: white;
-  background-color: #4056a1;
+  background-color: green;
   cursor: pointer;
 }
 
-#collab-button:hover {
+#story-button:hover {
   background: rgb(30, 30, 199);
 }
 
