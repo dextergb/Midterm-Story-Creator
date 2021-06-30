@@ -94,8 +94,9 @@
             </button>
           </footer>
         </article>
-        <button class="read" type="submit">Read</button>
-
+        <button class="read" type="submit">
+          <a href="/stories/<%=story.id%>">READ</a>
+        </button>
         <% }%> <% } %>
         <article class="story-container">
           <header>
@@ -170,7 +171,9 @@
             </button>
           </footer>
         </article>
-        <button class="contribute" type="submit">Contribute</button>
+        <button class="contribute" type="submit">
+          <a href="/stories/<%=story.id%>/contribute">Contribute</a>
+        </button>
         <% } %>
 
         <article class="story-container">
