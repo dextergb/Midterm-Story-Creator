@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
-    <title>Register</title>
+    <title>Login</title>
 
     <!-- External CSS -->
     <link
@@ -63,24 +63,31 @@
     <%- include('partials/_header') %>
 
     <div class="login-container">
-      <form method="post" action="index.html">
+      <form action="/login" method="POST">
         <div class="box">
           <h1 class="title">Sign in</h1>
 
-          <input type="email" name="email" placeholder="email" class="email" />
-
           <input
             type="email"
-            name="full name"
-            placeholder="full name"
             class="email"
+            name="email"
+            placeholder="Email"
+            required
           />
 
-          <a href="#"><div class="sign-in">Sign In</div></a>
+          <input
+            type="name"
+            class="email"
+            name="name"
+            placeholder="Full Name"
+            required
+          />
+
+          <input type="submit" value="Sign in" class="sign-in" />
         </div>
       </form>
-      <span>Forgot your password?</span>
-      <span class="click-here">Click Here!</span>
+      <a>Not yet registered?</a>
+      <a href="/register" class="click-here">Click Here!</a>
     </div>
 
     <script

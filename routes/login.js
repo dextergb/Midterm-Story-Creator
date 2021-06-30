@@ -20,10 +20,11 @@ module.exports = () => {
       res.render("login.ejs", templateVars);
     }
   });
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const email = req.body.email;
-    const username = authenticationOfUsers(email, db);
-    if (username) {
+    const user = await authenticationOfUsers(email, db);
+    console.log("user: ", user);
+    if (user) {
       req.session["user_id"] = user.id;
       res.redirect("/");
     } else {

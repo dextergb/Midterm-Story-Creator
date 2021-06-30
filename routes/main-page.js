@@ -16,7 +16,6 @@ module.exports = () => {
           stories: response.rows,
           userID: req.session.user_id,
         };
-        console.log(response.rows);
 
         res.render("index.ejs", templateVars);
       })
