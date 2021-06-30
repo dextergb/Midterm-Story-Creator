@@ -101,32 +101,37 @@ module.exports = () => {
     SET votes = votes + 1
     WHERE stories.id = $1;`, [storyId])
     .then((data) => {
-      res.render("index.ejs");
+      res.redirect("/");
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
   });
 
-
-
-
   // set the story completed
-  router.post("/:storyID/increment", (req, res) => {
+  router.post("/:storyID/complete", (req, res) => {
     let storyId = req.params.storyID;
-    //update the value of votes column in the stories table to +1
+    //let userId = req.session.userID;
+    console.log("this is storyid from stories.js: ",storyId);
+    // not currently using userid, but we might want to check the owner of the story
+
+    //update the value of column "completed" into "true" for completed story
     db.query(`UPDATE stories
     SET completed = true
     WHERE stories.id = $1;`, [storyId])
-    .then((data) => {
-      res.render("stories.ejs");
+    .then((res) => {
+      console.log("Done");
+      res.redirect("/");
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
   });
-
 
   return router;
 };
 
+const templateVars = {
+  stories: response.rows,
+  userID: req.session.user_id,
+};
