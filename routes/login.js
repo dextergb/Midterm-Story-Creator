@@ -28,7 +28,7 @@ module.exports = () => {
       req.session["user_id"] = user.id;
       res.redirect("/");
     } else {
-      res.status(401).send("Please Try Again.");
+      res.status(401).send("User Does Not Exist");
     }
   });
   return router;
