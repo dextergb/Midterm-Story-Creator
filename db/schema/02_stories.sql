@@ -20,3 +20,4 @@ CREATE TABLE contributed_stories (
   contributed_votes INTEGER NOT NULL DEFAULT 0,
   accepted_contribution BOOLEAN DEFAULT FALSE
 );
+
