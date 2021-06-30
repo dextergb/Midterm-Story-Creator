@@ -79,38 +79,27 @@
         <h1>Completed Stories</h1>
         <article class="story-container">
           <header>
-            <span id="user-name">username</span>
+            <span id="user-name"><%=stories.nick_name%></span>
           </header>
           <p class="story-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
-            dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
-            porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
-            urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel
-            nisi et leo accumsan cursus. Proin gravida volutpat velit ac
-            commodo. Vivamus sed posuere nisi. Sed pellentesque hendrerit
-            mattis. Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra, per inceptos himenaeos. Pellentesque ornare dictum dapibus.
-            Nullam accumsan varius turpis quis ultricies. Quisque sodales tortor
-            ac tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem
-            rhoncus, eleifend dui a, luctus felis. Class aptent taciti sociosqu
-            ad litora torquent per conubia nostra, per inceptos himenaeos.
+            <%=stories.story_body %>
           </p>
           <section class="new-collab">
             <section class="error-message"></section>
             <!-- User input story form -->
-            <form class="collab-form">
+            <form method="POST" action="contribute" class="collab-form">
               <textarea
                 name="text"
                 id="collab-text"
-                placeholder="What are you humming about?"
+                placeholder="What would you like to add?"
               ></textarea>
               <!-- Submit story -->
               <button id="collab-button" type="submit">Submit</button>
-              <!-- Count characters of collab -->
-              <output name="counter" class="counter" for="collab-text">140</output>
+
             </form>
             <!-- Render collab -->
             <section class="collab-section"></section>
+
           </section>
 
     </main>
