@@ -35,6 +35,7 @@ module.exports = () => {
       `SELECT stories.*, users.nick_name, users.id
     FROM stories
     JOIN users ON stories.user_id = users.id
+
     WHERE stories.id = $1`,
       [story_id]
     )
@@ -45,6 +46,7 @@ module.exports = () => {
           storyID: story_id,
           userID: data.rows[0].user_id,
         };
+
         res.render("stories_collab", templateVars);
       })
       .catch((err) => {
