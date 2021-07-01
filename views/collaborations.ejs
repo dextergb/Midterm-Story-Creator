@@ -87,6 +87,13 @@
             <p class="story-content">
               <%=story.story_body%>
             </p>
+            <form method="POST" action="stories/complete">
+              <input type="hidden" name="story_id" value="<%= story.id %>" />
+
+              <button id="complete_<%=story.id%>" type="submit">
+                <a>Complete::</a>
+              </button>
+            </form>
           </section>
 
           <!-- Render collab -->

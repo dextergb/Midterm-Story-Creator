@@ -5,6 +5,10 @@ const db = require("../db/database");
 module.exports = () => {
   router.get("/", (req, res) => {
     const user_id = req.session.user_id;
+    if (!user_id) {
+      // if user is not logged , he will be redirected to the main page again
+      return res.redirect("/login");
+    }
     db.query(
       `SELECT * FROM stories
     WHERE stories.user_id = $1

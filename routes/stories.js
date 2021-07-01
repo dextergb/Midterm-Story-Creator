@@ -78,37 +78,6 @@ module.exports = () => {
   });
 
   //Set the story completed and redirect to the main page
-  router.post("/:storyID/complete", (req, res) => {
-    const userId = req.session["user_id"];
-    const userEmail = req.session.email;
-
-    const story_id = req.params.storyID;
-    if (!userId) {
-      // if user is not logged , he will be redirected to the main page again
-      return res.redirect("/login");
-    }
-    if (authenticationOfUsers(userEmail, db) === true) {
-      db.query(
-        `UPDATE stories
-      SET completed = true
-      WHERE story_id = $1;`,
-        [story_id]
-      )
-        .then((data) => {
-          const stories = data.rows[0];
-          const templateVars = {
-            stories: response.rows,
-            userID: req.session.user_id,
-            stories,
-          };
-
-          res.render("index.ejs", templateVars);
-        })
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
-    }
-  });
 
   //Count votes for stories
   router.post("/:storyID/increment", (req, res) => {
@@ -127,5 +96,24 @@ module.exports = () => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  router.post("/complete", (req, res) => {
+    const story_id = req.body.story_id;
+
+    db.query(
+      `UPDATE stories
+      SET completed = true
+      WHERE stories.id = $1;
+    `,
+      [story_id]
+    )
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };
