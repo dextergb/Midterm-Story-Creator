@@ -2,71 +2,76 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
 const authenticationOfUsers = require("./helper_functions/helper_functions");
+const { response } = require("express");
 
 module.exports = () => {
   router.get("/:storyID", (req, res) => {
     const storyId = req.params.storyID;
-    const storyBody = req.params.story_body;
-    //console.log(storyId);
-    //console.log(query);
     db.query(
-      `SELECT stories.*, users.nick_name
+      `SELECT stories.*, users.nick_name, users.id
     FROM stories
     JOIN users ON stories.user_id = users.id
     WHERE stories.id = $1`,
       [storyId]
     )
+
       .then((data) => {
-        console.log(data.rows[0]);
-        const stories = data.rows[0]["story_body"];
-        res.json({ stories });
+        const stories = data.rows[0];
+        const templateVars = {
+          stories: stories,
+          userID: data.rows[0].user_id,
+        };
+        res.render("stories.ejs", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
-  // GET for contribute
   router.get("/:storyID/contribute", (req, res) => {
-    //res.send("Got it");
-    res.render("stories_collab.ejs");
+    // const stories = data.rows[0];
+    const story_id = req.params.storyID;
+    db.query(
+      `SELECT stories.*, users.nick_name, users.id
+    FROM stories
+    JOIN users ON stories.user_id = users.id
+
+    WHERE stories.id = $1`,
+      [story_id]
+    )
+      .then((data) => {
+        const stories = data.rows[0];
+        const templateVars = {
+          stories: stories,
+          storyID: story_id,
+          userID: data.rows[0].user_id,
+        };
+
+        res.render("stories_collab", templateVars);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
-  // POST for contribute
+
   router.post("/:storyID/contribute", (req, res) => {
+    const story_id = req.params.storyID;
+    const user_id = req.session.user_id;
+    const contributed_body = req.body.text;
+
     db.query(
       `INSERT INTO contributed_stories
-    (story_id, user_id, contributed_body, contributed_vote, accepted_contribution)
+    (story_id, user_id, contributed_body)
     VALUES
-    ($1, $2, $3, $4, $5) RETURNING*`,
-      [
-        story_id,
-        user_id,
-        contributed_body,
-        contributed_vote,
-        accepted_contribution,
-      ]
+    ($1, $2, $3) RETURNING*`,
+      [story_id, user_id, contributed_body]
     )
-      .then((response) => {
-        res.json(response.rows);
+      .then(() => {
+        res.redirect(`contribute`);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-  });
-
-  // should be for user, not for all
-  router.get("/:storyID", (req, res) => {
-    const userId = req.session["user_id"];
-
-    if (!userId) {
-      // if user is not logged , he will be redirected to the main page again
-      return res.redirect("/login");
-    }
-    const templateVars = {
-      stories: response.rows,
-      userID: req.session.user_id,
-    };
-    res.render("stories.ejs", templateVars);
   });
 
   // To get story completed and redirect to the main page
@@ -87,11 +92,12 @@ module.exports = () => {
         [storyId]
       )
         .then((data) => {
-          console.log(data.rows[0]);
           const templateVars = {
             stories: response.rows,
             userID: req.session.user_id,
+            stories,
           };
+          const stories = data.rows[0]["story_body"];
           //const stories = data.rows[0]["story_body"];
           res.render("index.ejs", templateVars);
         })
@@ -101,6 +107,7 @@ module.exports = () => {
     }
   });
 
+<<<<<<< HEAD
   // count votes for all stories
   router.post("/:storyID/increment", (req, res) => {
     let storyId = req.params.storyID;
@@ -139,5 +146,16 @@ module.exports = () => {
     });
   });
 
+=======
+>>>>>>> master
   return router;
 };
+
+// db.query(
+//   `SELECT stories.*, contributed_stories.contributed_body, users.nick_name
+// FROM stories
+// JOIN users ON stories.user_id = users.id
+// JOIN contributed_stories ON stories.id = contributed_stories.story_id
+// WHERE stories.id = $1`,
+//   [storyId]
+// )

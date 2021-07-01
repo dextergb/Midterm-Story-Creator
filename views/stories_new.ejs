@@ -24,10 +24,9 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/like__btn.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/collab.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/stories_new.css" type="text/css" />
     <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
     <link
       rel="stylesheet"
@@ -75,44 +74,49 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <!-- COMPLETED STORIES -->
-      <section class="completed">
-        <h1>Completed Stories</h1>
-        <article class="story-container">
-          <header>
-            <span id="user-name">username</span>
-          </header>
-          <p class="story-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
-            dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
-            porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
-            urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel
-            nisi et leo accumsan cursus. Proin gravida volutpat velit ac
-            commodo. Vivamus sed posuere nisi. Sed pellentesque hendrerit
-            mattis. Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra, per inceptos himenaeos. Pellentesque ornare dictum dapibus.
-            Nullam accumsan varius turpis quis ultricies. Quisque sodales tortor
-            ac tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem
-            rhoncus, eleifend dui a, luctus felis. Class aptent taciti sociosqu
-            ad litora torquent per conubia nostra, per inceptos himenaeos.
-          </p>
-          <section class="new-collab">
-            <section class="error-message"></section>
-            <!-- User input story form -->
-            <form class="collab-form">
-              <textarea
-                name="text"
-                id="collab-text"
-                placeholder="What are you humming about?"
-              ></textarea>
-              <!-- Submit story -->
-              <button id="collab-button" type="submit">Submit</button>
-              <!-- Count characters of collab -->
-              <output name="counter" class="counter" for="collab-text">140</output>
-            </form>
-            <!-- Render collab -->
-            <section class="collab-section"></section>
-          </section>
 
+      <h1>My Stories</h1>
+      <section class="story-container">
+        <a id="title"><b>Story Title</b></a>
+
+        <p class="story-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
+          dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
+          porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
+          urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel nisi
+          et leo accumsan cursus. Proin gravida volutpat velit ac commodo.
+          Vivamus sed posuere nisi. Sed pellentesque hendrerit mattis. Class
+          aptent taciti sociosqu ad litora torquent per conubia nostra, per
+          inceptos himenaeos. Pellentesque ornare dictum dapibus. Nullam
+          accumsan varius turpis quis ultricies. Quisque sodales tortor ac
+          tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem rhoncus,
+          eleifend dui a, luctus felis. Class aptent taciti sociosqu ad litora
+          torquent per conubia nostra, per inceptos himenaeos.
+        </p>
+      </section>
+      <h1>Create New Story</h1>
+      <section class="new-story">
+        <section class="error-message"></section>
+        <!-- User input story form -->
+        <form class="story-form">
+          <textarea
+            name="title"
+            id="story-title"
+            placeholder="Story Title"
+          ></textarea>
+          <textarea
+            name="content"
+            id="story-text"
+            placeholder="Write your new story here!"
+          ></textarea>
+          <!-- Submit story -->
+          <button id="story-button" type="submit">Submit</button>
+          <!-- Count characters of collab -->
+          <output name="counter" class="counter" for="story-text">500</output>
+        </form>
+        <!-- Render collab -->
+        <section class="story-section"></section>
+      </section>
     </main>
     <button class="back-to-top">
       <i class="fas fa-angle-double-up" id="arrow-up"></i>

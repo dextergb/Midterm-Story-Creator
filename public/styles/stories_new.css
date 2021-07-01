@@ -3,27 +3,25 @@
   flex-direction: column;
   padding: 20px;
 }
-.collab-container {
+.story-container {
   border: 2px solid black;
   padding: 10px;
-  margin-bottom: 10px;
 }
 
 #user-name {
   font-style: italic;
 }
 
-.collab-content {
+.story-content {
   color: black;
 }
 
-.new-collab {
+.new-story {
   background-color: rgb(231, 232, 236);
-  height: 140px;
-  padding: 10px;
+  height: 300px;
 }
 
-.collab-form {
+.story-form {
   width: 100%;
 }
 
@@ -31,18 +29,18 @@
   font-style: italic;
 }
 
-#collab-text {
+#story-text {
   border: none;
   border-bottom: 2px solid black;
   width: 100%;
-  height: 110px;
+  height: 200px;
   /* margin-top: 10px; */
   background-color: transparent;
   color: black;
   font-weight: bold;
 }
 
-#collab-title {
+#story-title {
   border: none;
   border-bottom: 2px solid black;
   width: 20%;
@@ -53,14 +51,14 @@
   font-weight: bold;
 }
 
-#collab-button {
+#story-button {
   font-family: sans-serif;
   color: white;
   background-color: green;
   cursor: pointer;
 }
 
-#collab-button:hover {
+#story-button:hover {
   background: rgb(30, 30, 199);
 }
 
