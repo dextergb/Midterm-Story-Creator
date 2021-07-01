@@ -26,8 +26,9 @@
     <link rel="stylesheet" href="/styles/like__btn.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/stories_new.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/collab.css" type="text/css" />
     <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/stories_new.css" type="text/css" />
     <link
       rel="stylesheet"
       href="/styles/responsive-design.css"
@@ -95,34 +96,34 @@
         </p>
       </section>
       <h1>Contribute</h1>
-      <section class="new-story">
+      <section class="new-collab">
         <section class="error-message"></section>
         <!-- User input story form -->
-        <form class="story-form">
+        <form class="collab-form">
           <textarea
             name="content"
-            id="story-text"
+            id="collab-text"
             placeholder="Continue the story here!"
           ></textarea>
           <!-- Submit story -->
-          <button id="story-button" type="submit">Submit</button>
+          <button id="collab-button" type="submit">Submit</button>
           <!-- Count characters of collab -->
-          <output name="counter" class="counter" for="story-text">500</output>
+          <output name="counter" class="counter" for="collab-text">500</output>
         </form>
         <!-- Render collab -->
-        <section class="story-section"></section>
+        <section class="collab-section"></section>
       </section>
       <!-- In Progress Stories -->
       <section class="in-progress container-column">
-        <h1>In Progress Stories</h1>
+        <h1>Other Collaborations</h1>
         <% for (const story of stories) { %>
 
-        <article class="story-container">
+        <article class="collab-container">
           <header>
-            <span id="story-name"> <%= story.nick_name %></span>
+            <span id="collab-name"> <%= story.nick_name %></span>
           </header>
-          <p class="story-content"><%= story.story_body %></p>
-          <footer class="story-footer">
+          <p class="collab-content"><%= story.story_body %></p>
+          <footer class="collab-footer">
             <button
               id="<%= story.id %>"
               href="#"
@@ -135,12 +136,9 @@
             </button>
           </footer>
         </article>
-        <button class="contribute" type="submit">
-          <a href="/stories/<%=story.id%>/contribute">Contribute</a>
-        </button>
+        <button class="accept" type="submit">Accept</button>
+        <button class="decline" type="submit">Decline</button>
         <% } %>
-
-        <button class="contribute" type="submit">Contribute</button>
       </section>
     </main>
     <button class="back-to-top">
