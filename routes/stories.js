@@ -107,7 +107,6 @@ module.exports = () => {
     }
   });
 
-<<<<<<< HEAD
   // count votes for all stories
   router.post("/:storyID/increment", (req, res) => {
     let storyId = req.params.storyID;
@@ -146,8 +145,6 @@ module.exports = () => {
     });
   });
 
-=======
->>>>>>> master
   return router;
 };
 
