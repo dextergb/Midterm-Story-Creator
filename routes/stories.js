@@ -5,16 +5,6 @@ const db = require("../db/database");
 module.exports = () => {
   //Show the story
   router.get("/:storyID", (req, res) => {
-<<<<<<< HEAD
-    const storyId = req.params.storyID;
-
-    db.query(
-      `SELECT stories.*, users.nick_name, users.id
-      FROM stories
-      JOIN users ON stories.user_id = users.id
-      WHERE stories.id = $1`,
-      [storyId]
-=======
     const story_id = req.params.storyID;
     db.query(
       `SELECT stories.*, users.nick_name, users.id
@@ -22,7 +12,6 @@ module.exports = () => {
     JOIN users ON stories.user_id = users.id
     WHERE stories.id = $1`,
       [story_id]
->>>>>>> a38f3fff7dabb76a28654d6783a1ba88ec4c14be
     )
       .then((data) => {
         const stories = data.rows[0];
@@ -40,16 +29,12 @@ module.exports = () => {
   //Contribute in the story. Get the page for contribution.
   router.get("/:storyID/contribute", (req, res) => {
     const story_id = req.params.storyID;
-<<<<<<< HEAD
-
-=======
     const user_id = req.session.user_id;
     console.log("PARAMS", req.session);
     if (!user_id) {
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
->>>>>>> a38f3fff7dabb76a28654d6783a1ba88ec4c14be
     db.query(
       `SELECT stories.*, users.nick_name, users.id
       FROM stories
