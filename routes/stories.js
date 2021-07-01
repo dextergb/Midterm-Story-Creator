@@ -6,13 +6,13 @@ const { response } = require("express");
 
 module.exports = () => {
   router.get("/:storyID", (req, res) => {
-    const storyId = req.params.storyID;
+    const story_id = req.params.storyID;
     db.query(
       `SELECT stories.*, users.nick_name, users.id
     FROM stories
     JOIN users ON stories.user_id = users.id
     WHERE stories.id = $1`,
-      [storyId]
+      [story_id]
     )
 
       .then((data) => {
