@@ -14,7 +14,6 @@ $(document).ready(function () {
         data: { param: story_id },
       })
         .then((data) => {
-          console.log("THISISS", data);
           $(`#vote_count_${story_id}`).text(data.message);
           $this
             .attr(
@@ -29,6 +28,3 @@ $(document).ready(function () {
     });
   });
 });
-
-
-

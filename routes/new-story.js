@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../db/database");
 const { response } = require("express");
 const authenticationOfUsers = require("../routes/helper_functions/helper_functions");
+
 module.exports = () => {
   router.get("/", (req, res) => {
     const user_id = req.session["user_id"];

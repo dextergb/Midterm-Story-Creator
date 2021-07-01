@@ -13,7 +13,6 @@ module.exports = () => {
     )
       .then((data) => {
         const voteCount = data.rows[0].votes;
-        console.log(voteCount);
         return res.status(200).send({ message: voteCount });
       })
       .catch((err) => {

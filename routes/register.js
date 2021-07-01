@@ -32,7 +32,6 @@ module.exports = () => {
       [body.full_name, body.email, body.nick_name]
     )
       .then((data) => {
-        // console.log(" ++++++++ ", data.rows);
         const newUser = data.rows[0];
 
         req.session.user_id = newUser.id;
@@ -40,11 +39,9 @@ module.exports = () => {
         res.redirect("/");
       })
       .catch(function (e) {
-        console.error(e); // "oh, no!"
+        console.error(e);
         console.log("message: ", e);
       });
-
-    //res.cookie('user_id', userId);
   });
   return router;
 };

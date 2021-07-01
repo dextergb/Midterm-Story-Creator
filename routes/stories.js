@@ -32,7 +32,6 @@ module.exports = () => {
     const user_id = req.session.user_id;
     console.log("PARAMS", req.session);
     if (!user_id) {
-      // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
     db.query(
@@ -76,8 +75,6 @@ module.exports = () => {
         res.status(500).json({ error: err.message });
       });
   });
-
-  //Set the story completed and redirect to the main page
 
   //Count votes for stories
   router.post("/:storyID/increment", (req, res) => {
