@@ -11,6 +11,7 @@ Front-end:
 - JS
 - jQuery
 - AJAX
+- PostgreSQL
 
 Back-end:
 
