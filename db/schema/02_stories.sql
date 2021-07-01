@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS contributed_stories CASCADE;
 CREATE TABLE stories (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  titles VARCHAR(255),
+  title VARCHAR(255),
   story_body TEXT,
   votes INTEGER NOT NULL DEFAULT 0,
   completed BOOLEAN DEFAULT FALSE
