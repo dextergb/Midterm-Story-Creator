@@ -26,7 +26,6 @@ module.exports = () => {
   router.post("/new-story", (req, res) => {
     const body = req.body;
     const user_id = req.session.user_id;
-    console.log(req.body);
     db.query(
       `INSERT INTO stories (user_id, story_body, title) VALUES ($1,$2,$3)`,
       [user_id, body.content, body.title]
