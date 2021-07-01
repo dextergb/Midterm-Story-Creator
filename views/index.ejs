@@ -80,7 +80,9 @@
         <% for (const story of stories) { %> <%if(story.completed === true){ %>
         <article class="story-container">
           <header>
-            <span id="story-name"> <%= story.nick_name %></span>
+            <span id="story-name"
+              ><%= story.nick_name %> <%= story.title %>></span
+            >
           </header>
           <p class="story-content"><%= story.story_body %></p>
           <footer class="story-footer">
@@ -156,7 +158,9 @@
 
         <article class="story-container">
           <header>
-            <span id="story-name"> <%= story.nick_name %></span>
+            <span id="story-name">
+              <%= story.nick_name %> <%= story.title %></span
+            >
           </header>
           <p class="story-content"><%= story.story_body %></p>
           <footer class="story-footer">

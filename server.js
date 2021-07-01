@@ -41,7 +41,7 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const loginRoute = require("./routes/login");
 const createRoute = require("./routes/new-story");
-const collaborationRoute = require("./routes/collaboration");
+const collaborationRoute = require("./routes/accept-collab");
 const storiesRoute = require("./routes/stories");
 const indexRoute = require("./routes/index");
 const userRegister = require("./routes/register");

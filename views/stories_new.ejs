@@ -98,7 +98,8 @@
       <section class="new-story">
         <section class="error-message"></section>
         <!-- User input story form -->
-        <form class="story-form">
+        <form method="POST" action= "/create/new-story">
+        <class class="story-form">
           <textarea
             name="title"
             id="story-title"
@@ -110,7 +111,9 @@
             placeholder="Write your new story here!"
           ></textarea>
           <!-- Submit story -->
+        </class>
           <button id="story-button" type="submit">Submit</button>
+        </form>
           <!-- Count characters of collab -->
           <output name="counter" class="counter" for="story-text">500</output>
         </form>
