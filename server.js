@@ -44,12 +44,12 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const loginRoute = require("./routes/login");
 const createRoute = require("./routes/new-story");
+const collaborationRoute = require("./routes/accept-collab");
 const storiesRoute = require("./routes/stories");
 const indexRoute = require("./routes/index");
 const userRegister = require("./routes/register");
 const voteButtonRoute = require("./routes/vote_button");
 const logoutRoute = require("./routes/logout");
-const accepteCollabRoute = require("./routes/accept-collab");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -61,7 +61,7 @@ app.use("/", indexRoute());
 app.use("/register", userRegister());
 app.use("/vote_button", voteButtonRoute());
 app.use("/logout", logoutRoute());
-app.use("/pending_collab", accepteCollabRoute());
+app.use("/collaborations", collaborationRoute());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
