@@ -152,7 +152,7 @@
       <!-- In Progress Stories -->
       <section class="in-progress container-column">
         <h1>In Progress Stories</h1>
-        <% for (const story of stories) { %>
+        <% for (const story of stories) { %><%if(story.completed === false){ %>
 
         <article class="story-container">
           <header>
@@ -168,17 +168,19 @@
               data-count="0"
             >
               <span id="<%= story.id %>">&#x2764;</span>
-              <span id="vote_count_<%= story.id %>"> <%= story.votes %> </span>
+              <span id="vote_count_<%=story.id %>"> <%= story.votes %> </span>
             </button>
           </footer>
         </article>
         <button class="contribute" type="submit">
           <a href="/stories/<%=story.id%>/contribute">Contribute</a>
         </button>
-        <button class="complete" type="submit">
-          <a href="/stories/<%=story.id%>/complete">Complete</a>
+        <form method="POST" action="/stories/<%=story.id%>/complete">
+        <button id="complete_<%=story.id%>" type="submit">
+          <a>Complete</a>
         </button>
-        <% } %>
+        </form>
+        <% } %><% } %>
 
         <article class="story-container">
           <header>

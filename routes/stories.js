@@ -78,35 +78,29 @@ module.exports = () => {
 
   // To get story completed and redirect to the main page
   router.post("/:storyID/complete", (req, res) => {
-    const userId = req.session["user_id"];
-    const userEmail = req.session.email;
-    ;
+    const story_id = req.params.storyID;
+    const user_id = req.session.user_id;
 
-    if (!userId) {
+    console.log("Story_id", user_id);
+
+    if (!user_id) {
+      console.log("You cannot do this");
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
     }
-    if (authenticationOfUsers(userEmail, db) === true) {
       db.query(
         `UPDATE stories
       SET completed = true
-      WHERE story_id = $1;`,
-        [storyId]
+      WHERE stories.id = $1;`,
+        [story_id]
       )
-        .then((data) => {
-          const templateVars = {
-            stories: response.rows,
-            userID: req.session.user_id,
-            stories,
-          };
-          const stories = data.rows[0]["story_body"];
-          //const stories = data.rows[0]["story_body"];
-          res.render("index.ejs", templateVars);
-        })
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
-    }
+      .then((data) => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+
   });
 
   // count votes for all stories

@@ -1,18 +1,16 @@
 $(document).ready(function () {
-  $('.complete').click(function (event) {
-    event.preventDefault();
-    const storyId = story.id;
-    console.log(`clicked complete`)
-    console.log(storyId);
-    // take a story id. Just for now - static
-    //const storyId = req.params.story_id;
-    //let storyId = $this.attr("story.id");
+  $("#complete").on("click", function (event) {
+   event.preventDefault();
+
+
+   const story_id = $this.attr("id");
     $.ajax({
       method: "POST",
-      url: `/stories/${storyId}/complete`,
-    }).done((res) => {
-      console.log(`succes updated story status: ${res}`)
-    }).fail((err)=>{
+      url: "/",
+      data:{ param: story_id }
+    }).then((data) => {
+      $(`#complete_${story_id}`)
+    }).catch((err)=>{
       console.log(`failed update with err: ${err}`)
     })
   });
