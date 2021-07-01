@@ -29,8 +29,13 @@ module.exports = () => {
   });
 
   router.get("/:storyID/contribute", (req, res) => {
-    // const stories = data.rows[0];
     const story_id = req.params.storyID;
+    const user_id = req.session.user_id;
+    console.log("PARAMS", req.session);
+    if (!user_id) {
+      // if user is not logged , he will be redirected to the main page again
+      return res.redirect("/login");
+    }
     db.query(
       `SELECT stories.*, users.nick_name, users.id
     FROM stories
@@ -78,8 +83,8 @@ module.exports = () => {
   router.post("/:storyID/complete", (req, res) => {
     const userId = req.session["user_id"];
     const userEmail = req.session.email;
-    const storyId = req.session.story_id;
 
+    const story_id = req.params.storyID;
     if (!userId) {
       // if user is not logged , he will be redirected to the main page again
       return res.redirect("/login");
@@ -89,16 +94,16 @@ module.exports = () => {
         `UPDATE stories
       SET completed = true
       WHERE story_id = $1;`,
-        [storyId]
+        [story_id]
       )
         .then((data) => {
+          const stories = data.rows[0];
           const templateVars = {
             stories: response.rows,
             userID: req.session.user_id,
             stories,
           };
-          const stories = data.rows[0]["story_body"];
-          //const stories = data.rows[0]["story_body"];
+
           res.render("index.ejs", templateVars);
         })
         .catch((err) => {
