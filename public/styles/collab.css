@@ -3,13 +3,23 @@
   flex-direction: column;
   padding: 20px;
 }
+.collab-container {
+  border: 2px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 
-.new-story {
+#user-name {
+  font-style: italic;
+}
+
+.collab-content {
+  color: black;
+}
+
+.new-collab {
   background-color: rgb(231, 232, 236);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
+  height: 140px;
   padding: 10px;
 }
 
@@ -17,10 +27,15 @@
   width: 100%;
 }
 
+#title {
+  font-style: italic;
+}
+
 #collab-text {
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 2px solid black;
   width: 100%;
+  height: 110px;
   /* margin-top: 10px; */
   background-color: transparent;
   color: black;
@@ -29,8 +44,9 @@
 
 #collab-title {
   border: none;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   width: 20%;
+  height: 30px;
   margin-top: 10px;
   background-color: transparent;
   color: black;
@@ -38,9 +54,9 @@
 }
 
 #collab-button {
-  font-family: "Bungee", sans-serif;
+  font-family: sans-serif;
   color: white;
-  background-color: #4056a1;
+  background-color: green;
   cursor: pointer;
 }
 
