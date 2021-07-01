@@ -1,20 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/database");
-const authenticationOfUsers = require("./helper_functions/helper_functions");
-const { response } = require("express");
 
 module.exports = () => {
+  //Show the story
   router.get("/:storyID", (req, res) => {
     const storyId = req.params.storyID;
+
     db.query(
       `SELECT stories.*, users.nick_name, users.id
-    FROM stories
-    JOIN users ON stories.user_id = users.id
-    WHERE stories.id = $1`,
+      FROM stories
+      JOIN users ON stories.user_id = users.id
+      WHERE stories.id = $1`,
       [storyId]
     )
-
       .then((data) => {
         const stories = data.rows[0];
         const templateVars = {
@@ -28,15 +27,15 @@ module.exports = () => {
       });
   });
 
+  //Contribute in the story. Get the page for contribution.
   router.get("/:storyID/contribute", (req, res) => {
-    // const stories = data.rows[0];
     const story_id = req.params.storyID;
+
     db.query(
       `SELECT stories.*, users.nick_name, users.id
-    FROM stories
-    JOIN users ON stories.user_id = users.id
-
-    WHERE stories.id = $1`,
+      FROM stories
+      JOIN users ON stories.user_id = users.id
+      WHERE stories.id = $1`,
       [story_id]
     )
       .then((data) => {
@@ -46,7 +45,6 @@ module.exports = () => {
           storyID: story_id,
           userID: data.rows[0].user_id,
         };
-
         res.render("stories_collab", templateVars);
       })
       .catch((err) => {
@@ -54,6 +52,7 @@ module.exports = () => {
       });
   });
 
+  //Save the story contribution into the database
   router.post("/:storyID/contribute", (req, res) => {
     const story_id = req.params.storyID;
     const user_id = req.session.user_id;
@@ -61,9 +60,9 @@ module.exports = () => {
 
     db.query(
       `INSERT INTO contributed_stories
-    (story_id, user_id, contributed_body)
-    VALUES
-    ($1, $2, $3) RETURNING*`,
+      (story_id, user_id, contributed_body)
+      VALUES
+      ($1, $2, $3) RETURNING*`,
       [story_id, user_id, contributed_body]
     )
       .then(() => {
@@ -74,43 +73,38 @@ module.exports = () => {
       });
   });
 
-
-
-  // To get story completed and redirect to the main page
+  //Set the story completed and redirect to the main page
   router.post("/:storyID/complete", (req, res) => {
     const story_id = req.params.storyID;
     const user_id = req.session.user_id;
 
-    console.log("Story_id", user_id);
-
     if (!user_id) {
       console.log("You cannot do this");
-      // if user is not logged , he will be redirected to the main page again
+      // if user is not logged , he will be redirected to the main page.
       return res.redirect("/login");
     }
-      db.query(
-        `UPDATE stories
-      SET completed = true
-      WHERE stories.id = $1;`,
-        [story_id]
-      )
+    db.query(
+      `UPDATE stories
+        SET completed = true
+        WHERE stories.id = $1;`,
+      [story_id]
+    )
       .then((data) => {
         res.redirect("/");
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
-      });
-
+    });
   });
 
-  // count votes for all stories
+  //Count votes for stories
   router.post("/:storyID/increment", (req, res) => {
     let storyId = req.params.storyID;
     //update the value of votes column in the stories table to +1
     db.query(
       `UPDATE stories
-    SET votes = votes + 1
-    WHERE stories.id = $1;`,
+      SET votes = votes + 1
+      WHERE stories.id = $1;`,
       [storyId]
     )
       .then((data) => {
@@ -120,17 +114,5 @@ module.exports = () => {
         res.status(500).json({ error: err.message });
       });
   });
-
-
-
   return router;
 };
-
-// db.query(
-//   `SELECT stories.*, contributed_stories.contributed_body, users.nick_name
-// FROM stories
-// JOIN users ON stories.user_id = users.id
-// JOIN contributed_stories ON stories.id = contributed_stories.story_id
-// WHERE stories.id = $1`,
-//   [storyId]
-// )

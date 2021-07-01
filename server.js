@@ -37,10 +37,7 @@ app.use(
 );
 app.use(express.static("public"));
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const loginRoute = require("./routes/login");
 const createRoute = require("./routes/new-story");
@@ -50,21 +47,17 @@ const userRegister = require("./routes/register");
 const voteButtonRoute = require("./routes/vote_button");
 const logoutRoute = require("./routes/logout");
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
+// Mount usage of resource routes
 app.use("/users", usersRoutes());
 app.use("/login", loginRoute());
 app.use("/create", createRoute());
-app.use("/stories", storiesRoute()); // maybe need to change
+app.use("/stories", storiesRoute());
 app.use("/", indexRoute());
 app.use("/register", userRegister());
 app.use("/vote_button", voteButtonRoute());
 app.use("/logout", logoutRoute());
 // Note: mount other resources here, using the same pattern above
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
 });

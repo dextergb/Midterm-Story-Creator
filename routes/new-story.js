@@ -5,7 +5,6 @@ const { response } = require("express");
 const authenticationOfUsers = require("../routes/helper_functions/helper_functions");
 module.exports = () => {
   router.get("/", (req, res) => {
-    // console.log("++_+_+_+_+_+_+---");
     const userId = req.session["user_id"];
     const userEmail = req.session.email;
     const templateVars = {
