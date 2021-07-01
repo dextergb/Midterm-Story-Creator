@@ -1,11 +1,12 @@
 $(document).ready(function () {
-  $('.btn-complete').click(function (event) {
-    // Don't follow the link
+  $('.complete').click(function (event) {
     event.preventDefault();
+    const storyId = story.id;
     console.log(`clicked complete`)
+    console.log(storyId);
     // take a story id. Just for now - static
-    //let storyId = req.params.storyID;
-    let storyId = $this.attr("story.id");
+    //const storyId = req.params.story_id;
+    //let storyId = $this.attr("story.id");
     $.ajax({
       method: "POST",
       url: `/stories/${storyId}/complete`,

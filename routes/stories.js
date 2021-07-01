@@ -74,11 +74,13 @@ module.exports = () => {
       });
   });
 
+
+
   // To get story completed and redirect to the main page
   router.post("/:storyID/complete", (req, res) => {
     const userId = req.session["user_id"];
     const userEmail = req.session.email;
-    const storyId = req.session.story_id;
+    ;
 
     if (!userId) {
       // if user is not logged , he will be redirected to the main page again
@@ -125,25 +127,7 @@ module.exports = () => {
       });
   });
 
-  // set the story completed
-  router.post("/:storyID/complete", (req, res) => {
-    let storyId = req.params.storyID;
-    //let userId = req.session.userID;
-    console.log("this is storyid from stories.js: ",storyId);
-    // not currently using userid, but we might want to check the owner of the story
 
-    //update the value of column "completed" into "true" for completed story
-    db.query(`UPDATE stories
-    SET completed = true
-    WHERE stories.id = $1;`, [storyId])
-    .then((res) => {
-      console.log("Done");
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-  });
 
   return router;
 };

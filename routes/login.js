@@ -10,6 +10,7 @@ module.exports = () => {
   router.get("/", (req, res) => {
     const userCookie = req.session["user_id"];
     if (userCookie) {
+      console.log(userCookie);
       res.redirect("/");
     } else {
       const templateVars = {
