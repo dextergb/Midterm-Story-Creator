@@ -39,7 +39,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
     <script
       type="text/javascript"
       src="/scripts/composer-char-counter.js"
@@ -87,14 +86,14 @@
             <p class="story-content">
               <%=story.story_body%>
             </p>
-          </section>
-          <form method="POST" action="stories/complete">
-            <input type="hidden" name="story_id" value="<%= story.id %>" />
+            <form method="POST" action="stories/complete">
+              <input type="hidden" name="story_id" value="<%= story.id %>" />
 
-            <button id="complete_<%=story.id%>" type="submit">
-              <a>Complete</a>
-            </button>
-          </form>
+              <button id="complete_<%=story.id%>" type="submit">
+                <a>Complete</a>
+              </button>
+            </form>
+          </section>
 
           <!-- Render collab -->
           <section class="collab-section"></section>
