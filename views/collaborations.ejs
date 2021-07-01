@@ -96,6 +96,7 @@
         <section class="in-progress container-column">
           <h4>Collaborations</h4>
           <% for (let contribution of contributions) { %>
+            <% if (contribution.accepted_contribution === false) { %>
             <% if (contribution.story_id === story.id) { %>
               <article class="collab-container">
                 <header>
@@ -122,6 +123,7 @@
 
             </form>
             <%}%>
+            <% } %>
             <% }%>
           </div>
         <% }%>
