@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Information -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Home Page</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      type="text/css"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/like__btn.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/stories_new.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/back-to-top.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/styles/responsive-design.css"
+      type="text/css"
+    />
+
+    <!-- External JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/client.js"></script>
+    <script
+      type="text/javascript"
+      src="/scripts/composer-char-counter.js"
+    ></script>
+    <script type="text/javascript" src="/scripts/back-to-top.js"></script>
+    <script type="text/javascript" src="/scripts/compose.js"></script>
+    <script type="text/javascript" src="/scripts/nav.js"></script>
+    <script type="text/javascript" src="/scripts/like__btn.js"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <!-- CDN: timeago -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <body>
+    <!-- Top nav bar (fixed) -->
+    <%- include('partials/_nav') %>
+
+    <!-- Header (fixed)-->
+    <%- include('partials/_header') %>
+
+    <!-- Page-specific (main) content here -->
+    <main class="container">
+      <!-- COMPLETED STORIES -->
+
+      <h1>In Progress Story</h1>
+      <section class="story-container">
+        <a id="title"><b>Story Title</b></a>
+
+        <p class="story-content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at
+          dapibus est, id faucibus orci. Quisque eget semper odio. Fusce
+          porttitor placerat sem, ac semper metus malesuada eu. Mauris massa
+          urna, facilisis sit amet ultrices eu, mollis eget diam. Etiam vel nisi
+          et leo accumsan cursus. Proin gravida volutpat velit ac commodo.
+          Vivamus sed posuere nisi. Sed pellentesque hendrerit mattis. Class
+          aptent taciti sociosqu ad litora torquent per conubia nostra, per
+          inceptos himenaeos. Pellentesque ornare dictum dapibus. Nullam
+          accumsan varius turpis quis ultricies. Quisque sodales tortor ac
+          tortor ultrices, quis aliquet erat feugiat. Suspendisse a sem rhoncus,
+          eleifend dui a, luctus felis. Class aptent taciti sociosqu ad litora
+          torquent per conubia nostra, per inceptos himenaeos.
+        </p>
+      </section>
+      <h1>Contribute</h1>
+      <section class="new-story">
+        <section class="error-message"></section>
+        <!-- User input story form -->
+        <form class="story-form">
+          <textarea
+            name="content"
+            id="story-text"
+            placeholder="Continue the story here!"
+          ></textarea>
+          <!-- Submit story -->
+          <button id="story-button" type="submit">Submit</button>
+          <!-- Count characters of collab -->
+          <output name="counter" class="counter" for="story-text">500</output>
+        </form>
+        <!-- Render collab -->
+        <section class="story-section"></section>
+      </section>
+      <!-- In Progress Stories -->
+      <section class="in-progress container-column">
+        <h1>In Progress Stories</h1>
+        <% for (const story of stories) { %>
+
+        <article class="story-container">
+          <header>
+            <span id="story-name"> <%= story.nick_name %></span>
+          </header>
+          <p class="story-content"><%= story.story_body %></p>
+          <footer class="story-footer">
+            <button
+              id="<%= story.id %>"
+              href="#"
+              title="Love it"
+              class="btn btn-counter"
+              data-count="0"
+            >
+              <span id="<%= story.id %>">&#x2764;</span>
+              <span id="vote_count_<%= story.id %>"> <%= story.votes %> </span>
+            </button>
+          </footer>
+        </article>
+        <button class="contribute" type="submit">
+          <a href="/stories/<%=story.id%>/contribute">Contribute</a>
+        </button>
+        <% } %>
+
+        <button class="contribute" type="submit">Contribute</button>
+      </section>
+    </main>
+    <button class="back-to-top">
+      <i class="fas fa-angle-double-up" id="arrow-up"></i>
+    </button>
+  </body>
+</html>
