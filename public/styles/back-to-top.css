@@ -5,7 +5,7 @@
   right: 20px;
   border: none;
   outline: none;
-  background-color: #4056a1;
+  background-color: black;
   color: white;
   cursor: pointer;
   padding: 15px;
@@ -16,11 +16,11 @@
 }
 
 .back-to-top:hover {
-  background-color: rgb(30, 30, 199);
+  background-color: rgb(191, 169, 42);
 }
 
 #arrow-up {
-  color: red;
+  color: white;
   font-size: 30px;
   margin-top: 8px;
   display: inline-block;
