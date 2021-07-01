@@ -9,6 +9,7 @@ module.exports = () => {
     db.query(
       `SELECT stories.id, stories.story_body, stories.user_id, votes, completed, users.nick_name FROM stories
       INNER JOIN users ON stories.user_id = users.id
+      ORDER BY stories.id DESC
     `
     )
       .then((response) => {
